@@ -10,10 +10,9 @@ import SwiftUI
 struct GithubUserDetailView: View {
     
     @State var isFavorite: Bool = false
+    @StateObject private var viewModel = GithubUserDetailViewModel()
     
-    let username: String
-    let gitUrl: String
-    let avatar: String
+//    let userId: Int
     
     var body: some View {
         NavigationView {
@@ -21,7 +20,7 @@ struct GithubUserDetailView: View {
                 VStack(alignment: .leading) {
                     HStack(spacing: 20, content: {
                         AsyncImage(
-                            url: URL(string: avatar),
+                            url: URL(string: viewModel.user?.avatarUrl ?? "-"),
                             content: {
                                 image in image.resizable()
                             }, placeholder: {
@@ -77,10 +76,6 @@ struct GithubUserDetailView: View {
 
 struct GithubUserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        GithubUserDetailView(
-            username: "John Doe",
-            gitUrl: "https://github.com/john-doe",
-            avatar: "https://ui-avatars.com/api/?name=John+Doe"
-        )
+        GithubUserDetailView()
     }
 }

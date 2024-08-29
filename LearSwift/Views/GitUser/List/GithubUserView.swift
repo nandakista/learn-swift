@@ -9,18 +9,17 @@ import SwiftUI
 
 struct GithubUserView: View {
     @Binding var selectedTab: Int
+    @EnvironmentObject private var viewModel: GithubUserViewModel
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(githubUsers) { githubUser in
+                ForEach(viewModel.allUsers) { githubUser in
                     NavigationLink(
-                        destination: GithubUserDetailView(username: githubUser.username, gitUrl: githubUser.gitUrl, avatar: githubUser.avatar),
+                        destination: GithubUserDetailView(),
                         label: {
                             GitUserItemList(
-                                username: githubUser.username,
-                                gitUrl: githubUser.gitUrl,
-                                avatar: githubUser.avatar
+                                githubUser: githubUser
                             )
                         }
                     )
@@ -53,5 +52,6 @@ struct GithubUserView_Previews: PreviewProvider {
         NavigationView {
             GithubUserView(selectedTab: $selectedTab)
         }
+        .environmentObject(dev.githubUserViewModel)
     }
 }

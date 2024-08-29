@@ -9,14 +9,12 @@ import SwiftUI
 
 struct GitUserItemList: View {
     
-    let username: String
-    let gitUrl: String
-    let avatar: String
+    let githubUser: GithubUser
     
     var body: some View {
         HStack {
             AsyncImage(
-                url: URL(string: avatar),
+                url: URL(string: githubUser.avatarUrl ?? ""),
                 content: {
                     image in image.resizable()
                 }, placeholder: {
@@ -31,8 +29,8 @@ struct GitUserItemList: View {
                 alignment: .leading,
                 spacing: 4,
                 content: {
-                    Text(username)
-                    Text(gitUrl)
+                    Text(githubUser.username ?? "-")
+                    Text(githubUser.gitUrl ?? "-")
                         .font(.caption)
                         .foregroundColor(.gray)
                 }
@@ -44,9 +42,7 @@ struct GitUserItemList: View {
 struct GitUserItemList_Previews: PreviewProvider {
     static var previews: some View {
         GitUserItemList(
-            username: "John Doe",
-            gitUrl: "https://github.com/john-doe",
-            avatar: "https://ui-avatars.com/api/?name=John+Doe"
+            githubUser: dev.githubUser
         )
     }
 }

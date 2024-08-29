@@ -40,6 +40,11 @@ struct MainNavigationView: View {
     }
 }
 
-#Preview {
-    MainNavigationView()
+struct MainNavigationView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            MainNavigationView()
+        }
+        .environmentObject(dev.githubUserViewModel)
+    }
 }
