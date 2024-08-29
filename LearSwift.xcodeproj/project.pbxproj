@@ -44,6 +44,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E4711532C7FF88C00A729C6 /* GitUser */ = {
+			isa = PBXGroup;
+			children = (
+				8E61B3F22AE9EEB2005B882D /* Detail */,
+				8E61B3F12AE9EE9D005B882D /* List */,
+			);
+			path = GitUser;
+			sourceTree = "<group>";
+		};
 		8E61B3D22AE9DB6A005B882D = {
 			isa = PBXGroup;
 			children = (
@@ -84,11 +93,10 @@
 		8E61B3F02AE9E7F5005B882D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8E4711532C7FF88C00A729C6 /* GitUser */,
 				8EDD5CC12C7EB65B005BB57C /* Favorite */,
 				8EDD5CBE2C7EB611005BB57C /* Profile */,
 				8EDD5CBB2C7EB5B3005BB57C /* MainNavigation */,
-				8E61B3F22AE9EEB2005B882D /* Detail */,
-				8E61B3F12AE9EE9D005B882D /* List */,
 			);
 			path = Views;
 			sourceTree = "<group>";
