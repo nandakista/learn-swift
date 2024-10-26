@@ -10,7 +10,7 @@ import Combine
 
 class GithubUserDetailViewModel: ObservableObject {
     @Published var user: GithubUser?
-    private var dataSource = UserDetailDataSource()
+    private var dataSource = GithubDataSource()
     
     init(username: String) {
         /* TODO: Preview Mode

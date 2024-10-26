@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8E1ECE3C2CCD006800211F5A /* DevToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1ECE3B2CCD006800211F5A /* DevToken.swift */; };
-		8E231BD02CCCE7B000B1AC3F /* UserDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E231BCF2CCCE7B000B1AC3F /* UserDetailDataSource.swift */; };
 		8E61B3DF2AE9DB6A005B882D /* LearSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E61B3DE2AE9DB6A005B882D /* LearSwiftApp.swift */; };
 		8E61B3E32AE9DB6B005B882D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E61B3E22AE9DB6B005B882D /* Assets.xcassets */; };
 		8E61B3E62AE9DB6B005B882D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E61B3E52AE9DB6B005B882D /* Preview Assets.xcassets */; };
@@ -24,13 +23,12 @@
 		8EDD5CBD2C7EB5CB005BB57C /* MainNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDD5CBC2C7EB5CB005BB57C /* MainNavigationView.swift */; };
 		8EDD5CC02C7EB61D005BB57C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDD5CBF2C7EB61D005BB57C /* ProfileView.swift */; };
 		8EDD5CC32C7EB667005BB57C /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDD5CC22C7EB667005BB57C /* FavoriteView.swift */; };
-		8EF452652C8021F3003FF427 /* UserListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF452642C8021F3003FF427 /* UserListDataSource.swift */; };
+		8EF452652C8021F3003FF427 /* GithubDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF452642C8021F3003FF427 /* GithubDataSource.swift */; };
 		8EF452672C8030B1003FF427 /* ResponseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF452662C8030B1003FF427 /* ResponseList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8E1ECE3B2CCD006800211F5A /* DevToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevToken.swift; sourceTree = "<group>"; };
-		8E231BCF2CCCE7B000B1AC3F /* UserDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailDataSource.swift; sourceTree = "<group>"; };
 		8E61B3DB2AE9DB6A005B882D /* LearSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E61B3DE2AE9DB6A005B882D /* LearSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearSwiftApp.swift; sourceTree = "<group>"; };
 		8E61B3E22AE9DB6B005B882D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,7 +45,7 @@
 		8EDD5CBC2C7EB5CB005BB57C /* MainNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationView.swift; sourceTree = "<group>"; };
 		8EDD5CBF2C7EB61D005BB57C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		8EDD5CC22C7EB667005BB57C /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
-		8EF452642C8021F3003FF427 /* UserListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListDataSource.swift; sourceTree = "<group>"; };
+		8EF452642C8021F3003FF427 /* GithubDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubDataSource.swift; sourceTree = "<group>"; };
 		8EF452662C8030B1003FF427 /* ResponseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -210,8 +208,7 @@
 		8EF452632C8021D2003FF427 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
-				8EF452642C8021F3003FF427 /* UserListDataSource.swift */,
-				8E231BCF2CCCE7B000B1AC3F /* UserDetailDataSource.swift */,
+				8EF452642C8021F3003FF427 /* GithubDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -288,14 +285,13 @@
 			files = (
 				8EDD5CC32C7EB667005BB57C /* FavoriteView.swift in Sources */,
 				8E61B3EF2AE9DB8C005B882D /* GithubUserDetailView.swift in Sources */,
-				8E231BD02CCCE7B000B1AC3F /* UserDetailDataSource.swift in Sources */,
 				8EAA4C0D2C801249001223BC /* GithubUserViewModel.swift in Sources */,
 				8EDD5CBD2C7EB5CB005BB57C /* MainNavigationView.swift in Sources */,
 				8EAA4C0A2C8009EB001223BC /* DoubleExtension.swift in Sources */,
 				8E61B3DF2AE9DB6A005B882D /* LearSwiftApp.swift in Sources */,
 				8E1ECE3C2CCD006800211F5A /* DevToken.swift in Sources */,
 				8E61B3F52AE9EEDC005B882D /* GitUserItemList.swift in Sources */,
-				8EF452652C8021F3003FF427 /* UserListDataSource.swift in Sources */,
+				8EF452652C8021F3003FF427 /* GithubDataSource.swift in Sources */,
 				8EF452672C8030B1003FF427 /* ResponseList.swift in Sources */,
 				8EBA536A2C7E908200097D62 /* GithubUser.swift in Sources */,
 				8EDD5CC02C7EB61D005BB57C /* ProfileView.swift in Sources */,

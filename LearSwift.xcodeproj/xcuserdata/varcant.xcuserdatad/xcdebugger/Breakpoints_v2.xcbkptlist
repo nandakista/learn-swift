@@ -3,4 +3,54 @@
    uuid = "94BE4CB0-FEE6-4FB5-8CFC-303F388434B4"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "564845B4-591A-4029-B4FD-E055E4606811"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LearSwift/Views/GitUser/List/GithubUserViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "init()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "564845B4-591A-4029-B4FD-E055E4606811 - ed3313bee484e450"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LearSwift.GithubUserViewModel.__allocating_init() -&gt; LearSwift.GithubUserViewModel"
+                  moduleName = "LearSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/varcant/Dev/iOS/LearSwift/LearSwift/Views/GitUser/List/GithubUserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "564845B4-591A-4029-B4FD-E055E4606811 - 822fe3a787f6c0bb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LearSwift.GithubUserViewModel.init() -&gt; LearSwift.GithubUserViewModel"
+                  moduleName = "LearSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/varcant/Dev/iOS/LearSwift/LearSwift/Views/GitUser/List/GithubUserViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "224">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
