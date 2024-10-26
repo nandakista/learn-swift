@@ -12,11 +12,7 @@ class UserListDataSource {
     @Published var allUsers: [GithubUser] = []
     var githubUserSubscription: AnyCancellable?
     
-    init() {
-        getUsers()
-    }
-    
-    private func getUsers() {
+    func getUsers() {
         guard let url = URL(string: "https://api.github.com/search/users?q=nanda&page=1&per_page=10") else {
             print("Invalid URL")
             return

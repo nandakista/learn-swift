@@ -12,11 +12,7 @@ class UserDetailDataSource {
     @Published var user: GithubUser?
     var githubUserDetailSubscription: AnyCancellable?
     
-    init(username: String) {
-        getUsersDetail(username: username)
-    }
-    
-    private func getUsersDetail(username: String) {
+    func getUsersDetail(username: String) {
         guard let url = URL(string: "https://api.github.com/users/\(username)") else {
             print("Invalid URL")
             return

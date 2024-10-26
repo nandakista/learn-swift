@@ -10,9 +10,7 @@ import Combine
 
 class GithubUserViewModel: ObservableObject {
     @Published var allUsers: [GithubUser] = []
-    
     private let dataSource = UserListDataSource()
-    var cancellable = Set<AnyCancellable>()
     
     init() {
         /* TODO: Preview Mode
@@ -20,14 +18,11 @@ class GithubUserViewModel: ObservableObject {
                 self.allUsers.append(DeveloperPreview.instance.githubUser)
             })
          */
+        dataSource.$allUsers.assign(to: &$allUsers)
         onLoadGithubUser()
     }
     
     func onLoadGithubUser() {
-        dataSource.$allUsers
-            .sink { (responseUsers) in
-                self.allUsers = responseUsers
-            }
-            .store(in: &cancellable)
+        dataSource.getUsers()
     }
 }
