@@ -21,33 +21,15 @@ class GithubDataSource {
             return
         }
         
-        var request = URLRequest(url: url)
-        request.setValue("token \(gitToken)", forHTTPHeaderField: "Authorization")
-        
-        githubUserSubscription = URLSession.shared.dataTaskPublisher(for: request)
-            .subscribe(on: DispatchQueue.global(qos: .default))
-            .tryMap { (output) -> Data in
-                print("data \(output.response)")
-                guard let response = output.response as? HTTPURLResponse,
-                      response.statusCode >= 200 && response.statusCode < 300 else {
-                    throw URLError(.badServerResponse)
-                }
-                return output.data
-            }
-            .receive(on: DispatchQueue.main)
+        githubUserSubscription = NetworkManager.get(url: url)
             .decode(type: ResponseList<GithubUser>.self, decoder: JSONDecoder())
-            .sink { (completion) in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print("Failed to fetch user list: \(error.localizedDescription)")
+            .sink(
+                receiveCompletion: NetworkManager.handleCompletion,
+                receiveValue: { [weak self] resultUsers in
+                    self?.allUsers = resultUsers.data
+                    self?.githubUserSubscription?.cancel()
                 }
-            } receiveValue: { [weak self] (resultUsers) in
-                print("Data List nih \(resultUsers.data)")
-                self?.allUsers = resultUsers.data
-                self?.githubUserSubscription?.cancel()
-            }
+            )
     }
     
     func getUsersDetail(username: String) {
@@ -56,31 +38,14 @@ class GithubDataSource {
             return
         }
         
-        var request = URLRequest(url: url)
-        request.setValue("token \(gitToken)", forHTTPHeaderField: "Authorization")
-        
-        githubUserDetailSubscription = URLSession.shared.dataTaskPublisher(for: request)
-            .subscribe(on: DispatchQueue.global(qos: .default))
-            .tryMap { (output) -> Data in
-                guard let response = output.response as? HTTPURLResponse,
-                      response.statusCode >= 200 && response.statusCode < 300 else {
-                    throw URLError(.badServerResponse)
-                }
-                return output.data
-            }
-            .receive(on: DispatchQueue.main)
+        githubUserDetailSubscription = NetworkManager.get(url: url)
             .decode(type: GithubUser.self, decoder: JSONDecoder())
-            .sink { (completion) in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print("Failed to fetch user data: \(error.localizedDescription)")
+            .sink(
+                receiveCompletion: NetworkManager.handleCompletion,
+                receiveValue: { [weak self] user in
+                    self?.user = user
+                    self?.githubUserDetailSubscription?.cancel()
                 }
-            } receiveValue: { [weak self] (result) in
-                self?.user = result
-                print("Fetched user details: \(result)")
-                self?.githubUserDetailSubscription?.cancel()
-            }
+            )
     }
 }

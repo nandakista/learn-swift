@@ -10,7 +10,6 @@ import SwiftUI
 struct GithubUserView: View {
     @Binding var selectedTab: Int
     @StateObject private var viewModel = GithubUserViewModel()
-
     
     var body: some View {
         NavigationView {
@@ -57,6 +56,5 @@ struct GithubUserView_Previews: PreviewProvider {
         NavigationView {
             GithubUserView(selectedTab: $selectedTab)
         }
-        .environmentObject(dev.githubUserViewModel)
     }
 }
