@@ -16,7 +16,7 @@ struct GithubUserView: View {
             List {
                 ForEach(viewModel.allUsers) { githubUser in
                     NavigationLink(
-                        destination: GithubUserDetailView(),
+                        destination: GithubUserDetailView(username: githubUser.username ?? ""),
                         label: {
                             GitUserItemList(
                                 githubUser: githubUser
@@ -41,6 +41,10 @@ struct GithubUserView: View {
                     }
                 })
             )
+            // Cara lain untuk init load data
+            //.onAppear {
+            //   viewModel.onLoadGithubUser()
+            //}
         }
     }
 }

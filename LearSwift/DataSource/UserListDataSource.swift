@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class GithubDataSource {
+class UserListDataSource {
     @Published var allUsers: [GithubUser] = []
     var githubUserSubscription: AnyCancellable?
     
@@ -18,6 +18,7 @@ class GithubDataSource {
     
     private func getUsers() {
         guard let url = URL(string: "https://api.github.com/search/users?q=nanda&page=1&per_page=10") else {
+            print("Invalid URL")
             return
         }
         
@@ -38,11 +39,10 @@ class GithubDataSource {
                 case .finished:
                     break
                 case .failure(let error):
-                    print("Got error: \(error)")
-                    print(error.localizedDescription)
+                    print("Failed to fetch user list: \(error.localizedDescription)")
                 }
             } receiveValue: { [weak self] (resultUsers) in
-                print("data nih \(resultUsers.data)")
+                print("Data List nih \(resultUsers.data)")
                 self?.allUsers = resultUsers.data
                 self?.githubUserSubscription?.cancel()
             }

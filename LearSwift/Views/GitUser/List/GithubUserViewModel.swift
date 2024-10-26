@@ -11,13 +11,15 @@ import Combine
 class GithubUserViewModel: ObservableObject {
     @Published var allUsers: [GithubUser] = []
     
-    private let dataSource = GithubDataSource()
+    private let dataSource = UserListDataSource()
     var cancellable = Set<AnyCancellable>()
     
     init() {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-//            self.allUsers.append(DeveloperPreview.instance.githubUser)
-//        })
+        /* TODO: Preview Mode
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+                self.allUsers.append(DeveloperPreview.instance.githubUser)
+            })
+         */
         onLoadGithubUser()
     }
     

@@ -10,9 +10,11 @@ import SwiftUI
 struct GithubUserDetailView: View {
     
     @State var isFavorite: Bool = false
-    @StateObject private var viewModel = GithubUserDetailViewModel()
+    @StateObject private var viewModel: GithubUserDetailViewModel
     
-//    let userId: Int
+    init(username: String) {
+        _viewModel = StateObject(wrappedValue: GithubUserDetailViewModel(username: username))
+    }
     
     var body: some View {
         NavigationView {
@@ -31,7 +33,7 @@ struct GithubUserDetailView: View {
                         .frame(width: 60, height: 60)
                         .clipShape(Circle())
                         VStack {
-                            Text("50")
+                            Text(String(viewModel.user?.repository ?? 0))
                                 .font(.headline)
                                 .foregroundColor(.primary)
                             Text("Repository")
@@ -39,7 +41,7 @@ struct GithubUserDetailView: View {
                         }
                         .frame(maxWidth: .infinity)
                         VStack {
-                            Text("2350")
+                            Text(String(viewModel.user?.followers ?? 0))
                                 .font(.headline)
                                 .foregroundColor(.primary)
                             Text("Follower")
@@ -47,7 +49,7 @@ struct GithubUserDetailView: View {
                         }
                         .frame(maxWidth: .infinity)
                         VStack {
-                            Text("50")
+                            Text(String(viewModel.user?.following ?? 0))
                                 .font(.headline)
                                 .foregroundColor(.primary)
                             Text("Following")
@@ -57,10 +59,10 @@ struct GithubUserDetailView: View {
                     })
                     .frame(maxWidth: .infinity)
                     .padding(.bottom, 12)
-                    Text("Name")
+                    Text(viewModel.user?.username ?? "-")
                         .font(.headline)
                         .foregroundColor(.primary)
-                    Text("Lorem ipsum")
+                    Text(viewModel.user?.location ?? "-")
                 }
                 .padding(.vertical, 12)
                 .padding(.horizontal, 16)
@@ -76,6 +78,6 @@ struct GithubUserDetailView: View {
 
 struct GithubUserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        GithubUserDetailView()
+        GithubUserDetailView(username: "nandakista")
     }
 }
