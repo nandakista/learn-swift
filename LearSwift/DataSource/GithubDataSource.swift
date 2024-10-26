@@ -16,29 +16,26 @@ class GithubDataSource {
     var githubUserDetailSubscription: AnyCancellable?
     
     func getUsers() {
-        guard let url = URL(string: "https://api.github.com/search/users?q=nanda&page=1&per_page=10") else {
-            print("Invalid URL")
-            return
-        }
-        
-        githubUserSubscription = NetworkManager.get(url: url)
-            .decode(type: ResponseList<GithubUser>.self, decoder: JSONDecoder())
-            .sink(
-                receiveCompletion: NetworkManager.handleCompletion,
-                receiveValue: { [weak self] resultUsers in
-                    self?.allUsers = resultUsers.data
-                    self?.githubUserSubscription?.cancel()
-                }
-            )
+        githubUserSubscription = NetworkManager.get(
+            path: "/search/users",
+            queryParam: [
+                URLQueryItem(name: "q", value: "nanda"),
+                URLQueryItem(name: "page", value: "1"),
+                URLQueryItem(name: "per_page", value: "10"),
+            ]
+        )
+        .decode(type: ResponseList<GithubUser>.self, decoder: JSONDecoder())
+        .sink(
+            receiveCompletion: NetworkManager.handleCompletion,
+            receiveValue: { [weak self] resultUsers in
+                self?.allUsers = resultUsers.data
+                self?.githubUserSubscription?.cancel()
+            }
+        )
     }
     
     func getUsersDetail(username: String) {
-        guard let url = URL(string: "https://api.github.com/users/\(username)") else {
-            print("Invalid URL")
-            return
-        }
-        
-        githubUserDetailSubscription = NetworkManager.get(url: url)
+        githubUserDetailSubscription = NetworkManager.get(path: "/users/\(username)")
             .decode(type: GithubUser.self, decoder: JSONDecoder())
             .sink(
                 receiveCompletion: NetworkManager.handleCompletion,

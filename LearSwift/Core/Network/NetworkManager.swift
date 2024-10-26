@@ -9,6 +9,8 @@ import Foundation
 import Combine
 
 class NetworkManager {
+    static let baseURL = URL(string: "https://api.github.com")!
+    
     enum NetworkingError: LocalizedError {
         case badURLResponse(url: URL)
         case unknown
@@ -21,7 +23,20 @@ class NetworkManager {
         }
     }
     
-    static func get(url: URL) -> AnyPublisher<Data, any Error> {
+    static func get(path: String, queryParam: [URLQueryItem]? = nil) -> AnyPublisher<Data, any Error> {
+        var urlComponents: URLComponents = URLComponents(
+            url: baseURL.appendingPathComponent(path),
+            resolvingAgainstBaseURL: true
+        )!
+        
+        if let queryParam = queryParam {
+            urlComponents.queryItems = queryParam
+        }
+        
+        guard let url = urlComponents.url else {
+            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
+        }
+        
         var request = URLRequest(url: url)
         request.setValue("token \(gitToken)", forHTTPHeaderField: "Authorization")
         
