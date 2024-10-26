@@ -22,7 +22,10 @@ class UserDetailDataSource {
             return
         }
         
-        githubUserDetailSubscription = URLSession.shared.dataTaskPublisher(for: url)
+        var request = URLRequest(url: url)
+        request.setValue("token \(gitToken)", forHTTPHeaderField: "Authorization")
+        
+        githubUserDetailSubscription = URLSession.shared.dataTaskPublisher(for: request)
             .subscribe(on: DispatchQueue.global(qos: .default))
             .tryMap { (output) -> Data in
                 guard let response = output.response as? HTTPURLResponse,

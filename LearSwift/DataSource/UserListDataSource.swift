@@ -22,7 +22,10 @@ class UserListDataSource {
             return
         }
         
-        githubUserSubscription = URLSession.shared.dataTaskPublisher(for: url)
+        var request = URLRequest(url: url)
+        request.setValue("token \(gitToken)", forHTTPHeaderField: "Authorization")
+        
+        githubUserSubscription = URLSession.shared.dataTaskPublisher(for: request)
             .subscribe(on: DispatchQueue.global(qos: .default))
             .tryMap { (output) -> Data in
                 print("data \(output.response)")
