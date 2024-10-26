@@ -9,7 +9,8 @@ import SwiftUI
 
 struct GithubUserView: View {
     @Binding var selectedTab: Int
-    @EnvironmentObject private var viewModel: GithubUserViewModel
+    @StateObject private var viewModel = GithubUserViewModel()
+
     
     var body: some View {
         NavigationView {
