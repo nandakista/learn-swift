@@ -9,14 +9,15 @@ import Foundation
 import Combine
 
 class GithubUserDetailViewModel: BaseViewModel<GithubUser> {
-    private var dataSource = GithubDataSource()
+    private let dataSource: IGithubDataSource
     
-    init(username: String) {
+    init(dataSource: IGithubDataSource, username: String) {
         /* TODO: Preview Mode
          DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
          self.user = DeveloperPreview.instance.githubUser
          })
          */
+        self.dataSource = dataSource;
         super.init()
         onLoadGithubUserDetail(username: username)
     }

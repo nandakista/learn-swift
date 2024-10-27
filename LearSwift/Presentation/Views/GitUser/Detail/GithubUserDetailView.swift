@@ -13,7 +13,10 @@ struct GithubUserDetailView: View {
     @StateObject private var viewModel: GithubUserDetailViewModel
     
     init(username: String) {
-        _viewModel = StateObject(wrappedValue: GithubUserDetailViewModel(username: username))
+        _viewModel = StateObject(wrappedValue: GithubUserDetailViewModel(
+            dataSource: GithubDataSource(),
+            username: username
+        ))
     }
     
     var body: some View {
@@ -71,7 +74,7 @@ struct GithubUserDetailView: View {
                     }
                     .padding(.vertical, 12)
                     .padding(.horizontal, 16)
-    //                .frame(maxWidth: .infinity, alignment: .leading)
+                    //                .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
         }

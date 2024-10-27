@@ -18,7 +18,7 @@ class DeveloperPreview {
     static let instance = DeveloperPreview()
     private init() {}
     
-    let githubUserViewModel = GithubUserViewModel()
+    let githubUserViewModel = GithubUserViewModel(dataSource: GithubDataSource())
     
     let githubUser = GithubUser(
         id: 1,

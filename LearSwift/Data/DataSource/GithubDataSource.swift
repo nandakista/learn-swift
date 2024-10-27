@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class GithubDataSource {
+class GithubDataSource: IGithubDataSource {
     func getUsers() -> AnyPublisher<[GithubUser], any Error> {
         return NetworkManager.get(
             path: "/search/users",
