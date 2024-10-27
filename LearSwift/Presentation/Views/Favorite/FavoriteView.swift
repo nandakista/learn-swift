@@ -12,7 +12,6 @@ struct FavoriteView: View {
         NavigationView {
             Text("Favorite View")
                 .navigationBarTitle("Favorite")
-            
         }
     }
 }

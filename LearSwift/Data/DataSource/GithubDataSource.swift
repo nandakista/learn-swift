@@ -9,12 +9,6 @@ import Foundation
 import Combine
 
 class GithubDataSource {
-//    @Published var allUsers: [GithubUser] = []
-//    var githubUserSubscription: AnyCancellable?
-//    
-//    @Published var user: GithubUser?
-//    var githubUserDetailSubscription: AnyCancellable?
-    
     func getUsers() -> AnyPublisher<[GithubUser], any Error> {
         return NetworkManager.get(
             path: "/search/users",

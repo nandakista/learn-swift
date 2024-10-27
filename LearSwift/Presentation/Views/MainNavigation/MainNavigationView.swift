@@ -14,7 +14,7 @@ struct MainNavigationView: View {
     var body: some View {
         TabView(
             selection: $selectedTab,
-            content:  {
+            content: {
                 GithubUserView(selectedTab: $selectedTab)
                     .tabItem {
                         Image(systemName: "rectangle.stack.person.crop.fill")

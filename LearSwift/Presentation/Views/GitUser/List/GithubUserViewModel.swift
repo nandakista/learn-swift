@@ -30,11 +30,6 @@ class GithubUserViewModel: BaseViewModel<GithubUser> {
                     self?.loadFinish(list: users)
                 }
             )
-//            .sink(receiveCompletion: { [weak self] completion in
-//                self?.handleCompletion(completion: completion)
-//            }, receiveValue: { [weak self] users in
-//                self?.loadFinish(list: users)
-//            })
             .store(in: &cancellables)
     }
     
