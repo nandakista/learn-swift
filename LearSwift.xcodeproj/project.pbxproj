@@ -75,16 +75,8 @@
 			children = (
 				8EAA4C062C8001C8001223BC /* Extension */,
 				8E1ECE3F2CCD164E00211F5A /* Network */,
-				8E1ECE3E2CCD163D00211F5A /* Helpers */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		8E1ECE3E2CCD163D00211F5A /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8E1ECE3F2CCD164E00211F5A /* Network */ = {
@@ -93,6 +85,31 @@
 				8E1ECE402CCD16C100211F5A /* NetworkManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		8E1ECE422CCDAD2F00211F5A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8EF452632C8021D2003FF427 /* DataSource */,
+				8E61B3F62AE9F0EF005B882D /* Models */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		8E1ECE432CCDAD6E00211F5A /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				8E1ECE442CCDAD8500211F5A /* Components */,
+				8E61B3F02AE9E7F5005B882D /* Views */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		8E1ECE442CCDAD8500211F5A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		8E4711532C7FF88C00A729C6 /* GitUser */ = {
@@ -124,10 +141,9 @@
 			isa = PBXGroup;
 			children = (
 				8E1ECE3D2CCD162C00211F5A /* Core */,
+				8E1ECE422CCDAD2F00211F5A /* Data */,
 				8E1ECE3A2CCD005B00211F5A /* Dev */,
-				8EF452632C8021D2003FF427 /* DataSource */,
-				8E61B3F62AE9F0EF005B882D /* Models */,
-				8E61B3F02AE9E7F5005B882D /* Views */,
+				8E1ECE432CCDAD6E00211F5A /* Presentation */,
 				8E61B3DE2AE9DB6A005B882D /* LearSwiftApp.swift */,
 				8E61B3E22AE9DB6B005B882D /* Assets.xcassets */,
 				8E61B3E42AE9DB6B005B882D /* Preview Content */,

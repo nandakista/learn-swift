@@ -48,20 +48,22 @@ class NetworkManager {
     }
     
     static func handleURLResponse(output: URLSession.DataTaskPublisher.Output, url: URL) throws -> Data {
-        print("data \(output.response)")
-        guard let response = output.response as? HTTPURLResponse,
-              response.statusCode >= 200 && response.statusCode < 300 else {
-            throw NetworkingError.badURLResponse(url: url)
+        guard let httpResponse = output.response as? HTTPURLResponse else {
+            throw URLError(.badServerResponse)
+        }
+        
+        guard (200...299).contains(httpResponse.statusCode) else {
+            throw URLError(.badServerResponse)
         }
         return output.data
     }
     
-    static func handleCompletion(completion: Subscribers.Completion<Error>) {
-        switch completion {
-        case .finished:
-            break
-        case .failure(let error):
-            print("Failed to get data: \(error.localizedDescription)")
-        }
-    }
+//    static func handleCompletion(completion: Subscribers.Completion<Error>) {
+//        switch completion {
+//        case .finished:
+//            break
+//        case .failure(let error):
+//            print("Failed to get data: \(error.localizedDescription)")
+//        }
+//    }
 }
