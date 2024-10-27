@@ -30,4 +30,10 @@ class GithubDataSource {
             .decode(type: GithubUser.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
+    
+    func getGitRepository() -> AnyPublisher<[Repo], any Error> {
+        return NetworkManager.get(path: "")
+            .decode(type: [Repo].self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
+    }
 }
