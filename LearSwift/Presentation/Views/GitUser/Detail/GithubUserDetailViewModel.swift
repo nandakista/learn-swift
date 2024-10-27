@@ -8,40 +8,27 @@
 import Foundation
 import Combine
 
-class GithubUserDetailViewModel: ObservableObject {
+class GithubUserDetailViewModel: BaseViewModel<GithubUser> {
     private var dataSource = GithubDataSource()
-    private var cancellable = Set<AnyCancellable>()
-    
-    @Published var user: GithubUser?
-    @Published var isLoading: Bool = false
-    @Published var errorMessage: String? = nil
     
     init(username: String) {
         /* TODO: Preview Mode
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-                self.user = DeveloperPreview.instance.githubUser
-            })
+         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+         self.user = DeveloperPreview.instance.githubUser
+         })
          */
+        super.init()
         onLoadGithubUserDetail(username: username)
     }
     
     func onLoadGithubUserDetail(username: String) {
-        isLoading = true
-        errorMessage = nil
-        
+        loadingState()
         dataSource.getUsersDetail(username: username)
-            .sink { [weak self] completion in
-                switch completion {
-                    case .failure(let error):
-                        self?.errorMessage = error.localizedDescription
-                        self?.isLoading = false
-                    case .finished:
-                        break
-                }
-            } receiveValue: { [weak self] user in
-                self?.user = user
-                self?.isLoading = false
-            }
-            .store(in: &cancellable)
+            .sink(
+                receiveCompletion: handleCompletion,
+                receiveValue: { [weak self] user in
+                    self?.loadFinish(data: user)
+                })
+            .store(in: &cancellables)
     }
 }

@@ -27,7 +27,7 @@ struct GithubUserDetailView: View {
                     VStack(alignment: .leading) {
                         HStack(spacing: 20, content: {
                             AsyncImage(
-                                url: URL(string: viewModel.user?.avatarUrl ?? "-"),
+                                url: URL(string: viewModel.dataObj?.avatarUrl ?? "-"),
                                 content: {
                                     image in image.resizable()
                                 }, placeholder: {
@@ -38,7 +38,7 @@ struct GithubUserDetailView: View {
                             .frame(width: 60, height: 60)
                             .clipShape(Circle())
                             VStack {
-                                Text(String(viewModel.user?.repository ?? 0))
+                                Text(String(viewModel.dataObj?.repository ?? 0))
                                     .font(.headline)
                                     .foregroundColor(.primary)
                                 Text("Repository")
@@ -46,7 +46,7 @@ struct GithubUserDetailView: View {
                             }
                             .frame(maxWidth: .infinity)
                             VStack {
-                                Text(String(viewModel.user?.followers ?? 0))
+                                Text(String(viewModel.dataObj?.followers ?? 0))
                                     .font(.headline)
                                     .foregroundColor(.primary)
                                 Text("Follower")
@@ -54,7 +54,7 @@ struct GithubUserDetailView: View {
                             }
                             .frame(maxWidth: .infinity)
                             VStack {
-                                Text(String(viewModel.user?.following ?? 0))
+                                Text(String(viewModel.dataObj?.following ?? 0))
                                     .font(.headline)
                                     .foregroundColor(.primary)
                                 Text("Following")
@@ -64,10 +64,10 @@ struct GithubUserDetailView: View {
                         })
                         .frame(maxWidth: .infinity)
                         .padding(.bottom, 12)
-                        Text(viewModel.user?.username ?? "-")
+                        Text(viewModel.dataObj?.username ?? "-")
                             .font(.headline)
                             .foregroundColor(.primary)
-                        Text(viewModel.user?.location ?? "-")
+                        Text(viewModel.dataObj?.location ?? "-")
                     }
                     .padding(.vertical, 12)
                     .padding(.horizontal, 16)

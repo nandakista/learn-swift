@@ -21,7 +21,7 @@ struct GithubUserView: View {
                 Text("The user is Empty..").foregroundColor(.blue)
             } else {
                 List {
-                    ForEach(viewModel.allUsers) { githubUser in
+                    ForEach(viewModel.dataList) { githubUser in
                         NavigationLink(
                             destination: GithubUserDetailView(username: githubUser.username ?? ""),
                             label: {

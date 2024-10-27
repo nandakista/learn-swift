@@ -26,8 +26,7 @@ class GithubDataSource {
         )
         .decode(type: ResponseList<GithubUser>.self, decoder: JSONDecoder())
         .map({ responseList in
-//            return responseList.data;
-            return [];
+            return responseList.data;
         })
         .eraseToAnyPublisher()
     }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8E1ECE3C2CCD006800211F5A /* DevToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1ECE3B2CCD006800211F5A /* DevToken.swift */; };
 		8E1ECE412CCD16C100211F5A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1ECE402CCD16C100211F5A /* NetworkManager.swift */; };
+		8E1ECE472CCE39AB00211F5A /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1ECE462CCE39AB00211F5A /* BaseViewModel.swift */; };
 		8E61B3DF2AE9DB6A005B882D /* LearSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E61B3DE2AE9DB6A005B882D /* LearSwiftApp.swift */; };
 		8E61B3E32AE9DB6B005B882D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E61B3E22AE9DB6B005B882D /* Assets.xcassets */; };
 		8E61B3E62AE9DB6B005B882D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E61B3E52AE9DB6B005B882D /* Preview Assets.xcassets */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		8E1ECE3B2CCD006800211F5A /* DevToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevToken.swift; sourceTree = "<group>"; };
 		8E1ECE402CCD16C100211F5A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		8E1ECE462CCE39AB00211F5A /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		8E61B3DB2AE9DB6A005B882D /* LearSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E61B3DE2AE9DB6A005B882D /* LearSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearSwiftApp.swift; sourceTree = "<group>"; };
 		8E61B3E22AE9DB6B005B882D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		8E1ECE3D2CCD162C00211F5A /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				8E1ECE452CCE399D00211F5A /* Base */,
 				8EAA4C062C8001C8001223BC /* Extension */,
 				8E1ECE3F2CCD164E00211F5A /* Network */,
 			);
@@ -110,6 +113,14 @@
 			children = (
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		8E1ECE452CCE399D00211F5A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				8E1ECE462CCE39AB00211F5A /* BaseViewModel.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		8E4711532C7FF88C00A729C6 /* GitUser */ = {
@@ -331,6 +342,7 @@
 				8EAA4C0D2C801249001223BC /* GithubUserViewModel.swift in Sources */,
 				8EDD5CBD2C7EB5CB005BB57C /* MainNavigationView.swift in Sources */,
 				8EAA4C0A2C8009EB001223BC /* DoubleExtension.swift in Sources */,
+				8E1ECE472CCE39AB00211F5A /* BaseViewModel.swift in Sources */,
 				8E61B3DF2AE9DB6A005B882D /* LearSwiftApp.swift in Sources */,
 				8E1ECE3C2CCD006800211F5A /* DevToken.swift in Sources */,
 				8E61B3F52AE9EEDC005B882D /* GitUserItemList.swift in Sources */,

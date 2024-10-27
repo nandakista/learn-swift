@@ -8,46 +8,34 @@
 import Foundation
 import Combine
 
-class GithubUserViewModel: ObservableObject {
+class GithubUserViewModel: BaseViewModel<GithubUser> {
     private let dataSource = GithubDataSource()
-    private var cancellable = Set<AnyCancellable>()
     
-    @Published var allUsers: [GithubUser] = [] {
-        didSet {
-            isEmpty = allUsers.isEmpty
-        }
-    }
-    @Published var isEmpty: Bool = true
-    @Published var isLoading: Bool = false
-    @Published var errorMessage: String? = nil
-    
-    init() {
+    override init() {
         /* TODO: Preview Mode
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-                self.allUsers.append(DeveloperPreview.instance.githubUser)
-            })
+         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+         self.allUsers.append(DeveloperPreview.instance.githubUser)
+         })
          */
+        super.init()
         onLoadGithubUser()
     }
     
     func onLoadGithubUser() {
-        isLoading = true
-        errorMessage = nil
-        
+        loadingState()
         dataSource.getUsers()
-            .sink { [weak self] completion in
-                switch completion {
-                    case .failure(let error):
-                        self?.errorMessage = "Failed to load users: \(error.localizedDescription)" // Handle error
-                        self?.isLoading = false
-                    case .finished:
-                        break
+            .sink(
+                receiveCompletion: handleCompletion,
+                receiveValue: { [weak self] users in
+                    self?.loadFinish(list: users)
                 }
-            } receiveValue: { [weak self] users in
-                self?.allUsers = users
-                self?.isLoading = false
-            }
-            .store(in: &cancellable)
+            )
+//            .sink(receiveCompletion: { [weak self] completion in
+//                self?.handleCompletion(completion: completion)
+//            }, receiveValue: { [weak self] users in
+//                self?.loadFinish(list: users)
+//            })
+            .store(in: &cancellables)
     }
-
+    
 }
