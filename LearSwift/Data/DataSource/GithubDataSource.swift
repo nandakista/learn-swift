@@ -11,7 +11,7 @@ import Combine
 class GithubDataSource: IGithubDataSource {
     func getUsers() -> AnyPublisher<[GithubUser], any Error> {
         return NetworkManager.get(
-            path: "/search/users",
+            path: "/searcsdh/users",
             queryParam: [
                 URLQueryItem(name: "q", value: "nanda"),
                 URLQueryItem(name: "page", value: "1"),
