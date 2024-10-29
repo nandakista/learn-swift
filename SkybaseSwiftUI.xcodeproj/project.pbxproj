@@ -12,7 +12,7 @@
 		8E1ECE412CCD16C100211F5A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1ECE402CCD16C100211F5A /* NetworkManager.swift */; };
 		8E1ECE472CCE39AB00211F5A /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1ECE462CCE39AB00211F5A /* BaseViewModel.swift */; };
 		8E1ECE492CCE8CE600211F5A /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1ECE482CCE8CE600211F5A /* ProfileViewModel.swift */; };
-		8E61B3DF2AE9DB6A005B882D /* LearSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E61B3DE2AE9DB6A005B882D /* LearSwiftApp.swift */; };
+		8E61B3DF2AE9DB6A005B882D /* SkybaseSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E61B3DE2AE9DB6A005B882D /* SkybaseSwiftUIApp.swift */; };
 		8E61B3E32AE9DB6B005B882D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E61B3E22AE9DB6B005B882D /* Assets.xcassets */; };
 		8E61B3E62AE9DB6B005B882D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E61B3E52AE9DB6B005B882D /* Preview Assets.xcassets */; };
 		8E61B3ED2AE9DB80005B882D /* GithubUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E61B3EC2AE9DB80005B882D /* GithubUserView.swift */; };
@@ -39,8 +39,8 @@
 		8E1ECE402CCD16C100211F5A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8E1ECE462CCE39AB00211F5A /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		8E1ECE482CCE8CE600211F5A /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		8E61B3DB2AE9DB6A005B882D /* LearSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8E61B3DE2AE9DB6A005B882D /* LearSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearSwiftApp.swift; sourceTree = "<group>"; };
+		8E61B3DB2AE9DB6A005B882D /* SkybaseSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkybaseSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E61B3DE2AE9DB6A005B882D /* SkybaseSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkybaseSwiftUIApp.swift; sourceTree = "<group>"; };
 		8E61B3E22AE9DB6B005B882D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E61B3E52AE9DB6B005B882D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8E61B3EC2AE9DB80005B882D /* GithubUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubUserView.swift; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 		8E61B3D22AE9DB6A005B882D = {
 			isa = PBXGroup;
 			children = (
-				8E61B3DD2AE9DB6A005B882D /* LearSwift */,
+				8E61B3DD2AE9DB6A005B882D /* SkybaseSwiftUI */,
 				8E61B3DC2AE9DB6A005B882D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -153,23 +153,23 @@
 		8E61B3DC2AE9DB6A005B882D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8E61B3DB2AE9DB6A005B882D /* LearSwift.app */,
+				8E61B3DB2AE9DB6A005B882D /* SkybaseSwiftUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8E61B3DD2AE9DB6A005B882D /* LearSwift */ = {
+		8E61B3DD2AE9DB6A005B882D /* SkybaseSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
 				8E1ECE3D2CCD162C00211F5A /* Core */,
 				8E1ECE422CCDAD2F00211F5A /* Data */,
 				8E1ECE3A2CCD005B00211F5A /* Dev */,
 				8E1ECE432CCDAD6E00211F5A /* Presentation */,
-				8E61B3DE2AE9DB6A005B882D /* LearSwiftApp.swift */,
+				8E61B3DE2AE9DB6A005B882D /* SkybaseSwiftUIApp.swift */,
 				8E61B3E22AE9DB6B005B882D /* Assets.xcassets */,
 				8E61B3E42AE9DB6B005B882D /* Preview Content */,
 			);
-			path = LearSwift;
+			path = SkybaseSwiftUI;
 			sourceTree = "<group>";
 		};
 		8E61B3E42AE9DB6B005B882D /* Preview Content */ = {
@@ -282,9 +282,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8E61B3DA2AE9DB6A005B882D /* LearSwift */ = {
+		8E61B3DA2AE9DB6A005B882D /* SkybaseSwiftUI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8E61B3E92AE9DB6B005B882D /* Build configuration list for PBXNativeTarget "LearSwift" */;
+			buildConfigurationList = 8E61B3E92AE9DB6B005B882D /* Build configuration list for PBXNativeTarget "SkybaseSwiftUI" */;
 			buildPhases = (
 				8E61B3D72AE9DB6A005B882D /* Sources */,
 				8E61B3D82AE9DB6A005B882D /* Frameworks */,
@@ -294,9 +294,9 @@
 			);
 			dependencies = (
 			);
-			name = LearSwift;
+			name = SkybaseSwiftUI;
 			productName = LearSwift;
-			productReference = 8E61B3DB2AE9DB6A005B882D /* LearSwift.app */;
+			productReference = 8E61B3DB2AE9DB6A005B882D /* SkybaseSwiftUI.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -314,7 +314,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8E61B3D62AE9DB6A005B882D /* Build configuration list for PBXProject "LearSwift" */;
+			buildConfigurationList = 8E61B3D62AE9DB6A005B882D /* Build configuration list for PBXProject "SkybaseSwiftUI" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -327,7 +327,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8E61B3DA2AE9DB6A005B882D /* LearSwift */,
+				8E61B3DA2AE9DB6A005B882D /* SkybaseSwiftUI */,
 			);
 		};
 /* End PBXProject section */
@@ -356,7 +356,7 @@
 				8EDD5CBD2C7EB5CB005BB57C /* MainNavigationView.swift in Sources */,
 				8EAA4C0A2C8009EB001223BC /* DoubleExtension.swift in Sources */,
 				8E1ECE472CCE39AB00211F5A /* BaseViewModel.swift in Sources */,
-				8E61B3DF2AE9DB6A005B882D /* LearSwiftApp.swift in Sources */,
+				8E61B3DF2AE9DB6A005B882D /* SkybaseSwiftUIApp.swift in Sources */,
 				8E1ECE3C2CCD006800211F5A /* DevToken.swift in Sources */,
 				8E61B3F52AE9EEDC005B882D /* GitUserItemList.swift in Sources */,
 				8EF452652C8021F3003FF427 /* GithubDataSource.swift in Sources */,
@@ -498,7 +498,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"LearSwift/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SkybaseSwiftUI/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -511,7 +511,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.skybase.ios.LearSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skybase.ios.SkybaseSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -526,7 +526,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"LearSwift/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SkybaseSwiftUI/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -539,7 +539,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.skybase.ios.LearSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skybase.ios.SkybaseSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -550,7 +550,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8E61B3D62AE9DB6A005B882D /* Build configuration list for PBXProject "LearSwift" */ = {
+		8E61B3D62AE9DB6A005B882D /* Build configuration list for PBXProject "SkybaseSwiftUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8E61B3E72AE9DB6B005B882D /* Debug */,
@@ -559,7 +559,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8E61B3E92AE9DB6B005B882D /* Build configuration list for PBXNativeTarget "LearSwift" */ = {
+		8E61B3E92AE9DB6B005B882D /* Build configuration list for PBXNativeTarget "SkybaseSwiftUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8E61B3EA2AE9DB6B005B882D /* Debug */,

@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct LearSwiftApp: App {
+struct SkybaseSwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
