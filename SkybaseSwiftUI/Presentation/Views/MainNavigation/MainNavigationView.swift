@@ -15,28 +15,35 @@ struct MainNavigationView: View {
         TabView(
             selection: $selectedTab,
             content: {
-                GithubUserView(selectedTab: $selectedTab)
-                    .tabItem {
-                        Image(systemName: "rectangle.stack.person.crop.fill")
-                        Text("Github Users")
-                    }
-                    .tag(0)
+                NavigationStack {
+                    GithubUserView(selectedTab: $selectedTab)
+                }
+                .tabItem {
+                    Image(systemName: "rectangle.stack.person.crop.fill")
+                    Text("Github Users")
+                }
+                .tag(0)
                 
-                FavoriteView()
-                    .tabItem {
-                        Image(systemName: "heart.fill")
-                        Text("Favorite User")
-                    }
-                    .tag(1)
+                NavigationStack{
+                    FavoriteView()
+                }
+                .tabItem {
+                    Image(systemName: "heart.fill")
+                    Text("Favorite User")
+                }
+                .tag(1)
                 
-                ProfileView()
-                    .tabItem {
-                        Image(systemName: "person.fill")
-                        Text("Profile")
-                    }
-                    .tag(2)
+                NavigationStack {
+                    ProfileView()
+                }
+                .tabItem {
+                    Image(systemName: "person.fill")
+                    Text("Profile")
+                }
+                .tag(2)
             }
-        ).accentColor(.red)
+        )
+        .accentColor(.red)
     }
 }
 
