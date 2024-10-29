@@ -23,9 +23,15 @@ class BaseViewModel<T>: ObservableObject {
         }
     }
     
+    @Published var errorMessage: String? = nil {
+        didSet {
+            isError = errorMessage != nil
+        }
+    }
+    
     @Published var isEmpty: Bool = true
     @Published var isLoading: Bool = false
-    @Published var errorMessage: String? = nil
+    @Published var isError: Bool = false
     
     func handleCompletion(completion: Subscribers.Completion<Error>) {
         switch completion {

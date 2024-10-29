@@ -13,57 +13,56 @@ struct GithubUserView: View {
     
     var body: some View {
         NavigationView {
-            if (viewModel.isLoading) {
-                ProgressView()
-            } else if let errorMessage = viewModel.errorMessage {
-                Text(errorMessage).foregroundColor(.red)
-            } else if (viewModel.isEmpty) {
-                Text("The user is Empty..").foregroundColor(.blue)
-            } else {
-                List {
-                    ForEach(viewModel.dataList) { githubUser in
-                        NavigationLink(
-                            destination: GithubUserDetailView(username: githubUser.username ?? ""),
-                            label: {
-                                GitUserItemList(
-                                    githubUser: githubUser
-                                )
-                            }
-                        )
+            StateView(
+                loadingWhen: viewModel.isLoading,
+                emptyWhen: viewModel.isEmpty,
+                errorWhen: viewModel.isError,
+                errorMessage: viewModel.errorMessage,
+                content: {
+                    List {
+                        ForEach(viewModel.dataList) { githubUser in
+                            NavigationLink(
+                                destination: GithubUserDetailView(username: githubUser.username ?? ""),
+                                label: {
+                                    GitUserItemList(
+                                        githubUser: githubUser
+                                    )
+                                }
+                            )
+                        }
                     }
+                    .listStyle(.plain)
+                    .navigationTitle("Github Users")
+                    .navigationBarItems(
+                        trailing: HStack(content: {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(.red)
+                                .onTapGesture {
+                                    selectedTab = 1
+                                }
+                            Image(systemName: "gear")
+                                .foregroundColor(.black)
+                                .onTapGesture {
+                                    // TODO :
+                                }
+                        })
+                    )
+                    // Cara lain untuk init load data
+                    //.onAppear {
+                    //   viewModel.onLoadGithubUser()
+                    //}
                 }
-                .listStyle(.plain)
-                .navigationTitle("Github Users")
-                .navigationBarItems(
-                    trailing: HStack(content: {
-                        Image(systemName: "heart.fill")
-                            .foregroundColor(.red)
-                            .onTapGesture {
-                                selectedTab = 1
-                            }
-                        Image(systemName: "gear")
-                            .foregroundColor(.black)
-                            .onTapGesture {
-                                // TODO :
-                            }
-                    })
-                )
-                // Cara lain untuk init load data
-                //.onAppear {
-                //   viewModel.onLoadGithubUser()
-                //}
-                
-            }
+            )
         }
     }
-}
-
-struct GithubUserView_Previews: PreviewProvider {
-    static var previews: some View {
-        @State var selectedTab: Int = 0
-        
-        NavigationView {
-            GithubUserView(selectedTab: $selectedTab)
+    
+    struct GithubUserView_Previews: PreviewProvider {
+        static var previews: some View {
+            @State var selectedTab: Int = 0
+            
+            NavigationView {
+                GithubUserView(selectedTab: $selectedTab)
+            }
         }
     }
 }

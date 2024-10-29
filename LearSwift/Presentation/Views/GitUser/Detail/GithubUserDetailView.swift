@@ -21,62 +21,63 @@ struct GithubUserDetailView: View {
     
     var body: some View {
         NavigationView {
-            if (viewModel.isLoading) {
-                ProgressView()
-            } else if let errorMessage = viewModel.errorMessage {
-                Text(errorMessage).foregroundColor(.red)
-            } else {
-                ScrollView{
-                    VStack(alignment: .leading) {
-                        HStack(spacing: 20, content: {
-                            AsyncImage(
-                                url: URL(string: viewModel.dataObj?.avatarUrl ?? "-"),
-                                content: {
-                                    image in image.resizable()
-                                }, placeholder: {
-                                    ProgressView()
+            StateView(
+                loadingWhen: viewModel.isLoading,
+                errorWhen: viewModel.isError,
+                errorMessage: viewModel.errorMessage,
+                content: {
+                    ScrollView {
+                        VStack(alignment: .leading) {
+                            HStack(spacing: 20, content: {
+                                AsyncImage(
+                                    url: URL(string: viewModel.dataObj?.avatarUrl ?? "-"),
+                                    content: {
+                                        image in image.resizable()
+                                    }, placeholder: {
+                                        ProgressView()
+                                    }
+                                )
+                                .scaledToFit()
+                                .frame(width: 60, height: 60)
+                                .clipShape(Circle())
+                                VStack {
+                                    Text(String(viewModel.dataObj?.repository ?? 0))
+                                        .font(.headline)
+                                        .foregroundColor(.primary)
+                                    Text("Repository")
+                                        .font(.subheadline)
                                 }
-                            )
-                            .scaledToFit()
-                            .frame(width: 60, height: 60)
-                            .clipShape(Circle())
-                            VStack {
-                                Text(String(viewModel.dataObj?.repository ?? 0))
-                                    .font(.headline)
-                                    .foregroundColor(.primary)
-                                Text("Repository")
-                                    .font(.subheadline)
-                            }
+                                .frame(maxWidth: .infinity)
+                                VStack {
+                                    Text(String(viewModel.dataObj?.followers ?? 0))
+                                        .font(.headline)
+                                        .foregroundColor(.primary)
+                                    Text("Follower")
+                                        .font(.subheadline)
+                                }
+                                .frame(maxWidth: .infinity)
+                                VStack {
+                                    Text(String(viewModel.dataObj?.following ?? 0))
+                                        .font(.headline)
+                                        .foregroundColor(.primary)
+                                    Text("Following")
+                                        .font(.subheadline)
+                                }
+                                .frame(maxWidth: .infinity)
+                            })
                             .frame(maxWidth: .infinity)
-                            VStack {
-                                Text(String(viewModel.dataObj?.followers ?? 0))
-                                    .font(.headline)
-                                    .foregroundColor(.primary)
-                                Text("Follower")
-                                    .font(.subheadline)
-                            }
-                            .frame(maxWidth: .infinity)
-                            VStack {
-                                Text(String(viewModel.dataObj?.following ?? 0))
-                                    .font(.headline)
-                                    .foregroundColor(.primary)
-                                Text("Following")
-                                    .font(.subheadline)
-                            }
-                            .frame(maxWidth: .infinity)
-                        })
-                        .frame(maxWidth: .infinity)
-                        .padding(.bottom, 12)
-                        Text(viewModel.dataObj?.username ?? "-")
-                            .font(.headline)
-                            .foregroundColor(.primary)
-                        Text(viewModel.dataObj?.location ?? "-")
+                            .padding(.bottom, 12)
+                            Text(viewModel.dataObj?.username ?? "-")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                            Text(viewModel.dataObj?.location ?? "-")
+                        }
+                        .padding(.vertical, 12)
+                        .padding(.horizontal, 16)
+                        //                .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    .padding(.vertical, 12)
-                    .padding(.horizontal, 16)
-                    //                .frame(maxWidth: .infinity, alignment: .leading)
                 }
-            }
+            )
         }
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarItems(trailing: Image(systemName: isFavorite ? "heart.fill" : "heart").foregroundColor(.red).onTapGesture {
