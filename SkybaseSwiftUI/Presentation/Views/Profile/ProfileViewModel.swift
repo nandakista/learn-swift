@@ -9,7 +9,8 @@ import Foundation
 
 class ProfileViewModel : BaseViewModel<GithubUser> {
     private let dataSource = GithubDataSource()
-    private let authManager = AuthManager.shared
+    
+    private let authManager = AuthManager.shared // TODO: Why using singleton doesn't work ?
     
     override init() {
         /* TODO: Preview Mode
@@ -33,7 +34,7 @@ class ProfileViewModel : BaseViewModel<GithubUser> {
             .store(in: &cancellables)
     }
     
-    func onLogout() {
+    func onLogout(with authManager: AuthManager) {
         Task {
             await authManager.setUnauth()
         }

@@ -87,7 +87,7 @@ struct ProfileView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Image(systemName: "rectangle.portrait.and.arrow.right")
                     .onTapGesture {
-                        viewModel.onLogout()
+                        viewModel.onLogout(with: authManager)
                     }
             }
         }
