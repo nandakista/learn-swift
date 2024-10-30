@@ -83,6 +83,7 @@ struct ProfileView: View {
             }
         )
         .navigationTitle("Profile")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Image(systemName: "rectangle.portrait.and.arrow.right")
@@ -91,6 +92,7 @@ struct ProfileView: View {
                     }
             }
         }
+        .loadingDialog(isShowing: $viewModel.isLoadingDialog)
     }
 }
 

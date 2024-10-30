@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject private var authManager: AuthManager
+    @StateObject private var viewModel = LoginViewModel()
+    
     var body: some View {
-        Text("Login View")
+        VStack {
+            Button("Login") {
+                viewModel.onLogin(with: authManager)
+            }
+        }
+        .loadingDialog(
+            isShowing: $viewModel.isLoadingDialog
+        )
     }
 }
 

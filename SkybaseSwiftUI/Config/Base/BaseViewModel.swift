@@ -29,9 +29,23 @@ class BaseViewModel<T>: ObservableObject {
         }
     }
     
+    /*
+        State for ui in the page, example is in [StateView]
+    */
     @Published var isEmpty: Bool = true
     @Published var isLoading: Bool = false
     @Published var isError: Bool = false
+    
+    /*
+        State for dialog, alert, and similiar
+    */
+    @Published var isLoadingDialog: Bool = false
+    @Published var isErrorDialog: Bool = false
+    @Published var errorDialogMessage: String? = nil {
+        didSet {
+            isErrorDialog = errorDialogMessage != nil
+        }
+    }
     
     func handleCompletion(completion: Subscribers.Completion<Error>) {
         switch completion {
@@ -65,5 +79,28 @@ class BaseViewModel<T>: ObservableObject {
             dataList = list
         }
         dismissLoading()
+    }
+    
+    ///
+    /// Call this to change and show loading dialog
+    ///
+    func showLoadingDialog() {
+        isLoadingDialog = true
+        errorDialogMessage = nil
+    }
+    
+    ///
+    /// Call this to change and dismiss loading dialog
+    ///
+    func dismissLoadingDialog() {
+        isLoadingDialog = false
+    }
+    
+    ///
+    /// Call this to change and show error dialog
+    ///
+    func loadingDialogError(error: String) {
+        self.errorDialogMessage = error
+        dismissLoadingDialog()
     }
 }

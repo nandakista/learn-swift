@@ -34,9 +34,11 @@ class ProfileViewModel : BaseViewModel<GithubUser> {
             .store(in: &cancellables)
     }
     
-    func onLogout(with authManager: AuthManager) {
+    @MainActor func onLogout(with authManager: AuthManager) {
         Task {
+            showLoadingDialog()
             await authManager.setUnauth()
+            dismissLoadingDialog()
         }
     }
 }

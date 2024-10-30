@@ -28,7 +28,6 @@ final class AuthManager: ObservableObject {
     
     @MainActor
     func setAuth() async {
-        try? await Task.sleep(for: Duration.seconds(1))
         self.authState = .authenticated
         print("set auth \(self.authState)")
     }
