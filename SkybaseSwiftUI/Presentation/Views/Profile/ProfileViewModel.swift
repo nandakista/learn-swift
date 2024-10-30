@@ -9,6 +9,7 @@ import Foundation
 
 class ProfileViewModel : BaseViewModel<GithubUser> {
     private let dataSource = GithubDataSource()
+    private let authManager = AuthManager.shared
     
     override init() {
         /* TODO: Preview Mode
@@ -32,4 +33,9 @@ class ProfileViewModel : BaseViewModel<GithubUser> {
             .store(in: &cancellables)
     }
     
+    func onLogout() {
+        Task {
+            await authManager.setUnauth()
+        }
+    }
 }

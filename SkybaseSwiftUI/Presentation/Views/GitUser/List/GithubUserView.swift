@@ -21,7 +21,7 @@ struct GithubUserView: View {
                 List {
                     ForEach(viewModel.dataList) { githubUser in
                         NavigationLink(
-                            destination: 
+                            destination:
                                 GithubUserDetailView(username: githubUser.username ?? "")
                                 .toolbar(.hidden, for: .tabBar),
                             label: {
@@ -40,9 +40,7 @@ struct GithubUserView: View {
                             Image(systemName: "heart.fill")
                                 .foregroundColor(.red)
                                 .onTapGesture {
-                                    withAnimation {
-                                        selectedTab = 1
-                                    }
+                                    selectedTab = 1
                                 }
                             Image(systemName: "gear")
                                 .foregroundColor(.black)

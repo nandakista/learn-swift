@@ -32,7 +32,7 @@ enum NetworkError: LocalizedError {
             case .requestTimeout:
                 return "[🛜] The request timed out."
             case .unauthorized:
-                return "[🚫] (401) Unauthorized access. Please login again."
+                return "[🔐] (401) Unauthorized access. Please login again."
             case .badRequest:
                 return "[‼️] (400) Bad request"
             case .forbidden:
