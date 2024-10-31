@@ -12,42 +12,42 @@ struct StateView<Content: View, LoadingView: View, ErrorView: View, EmptyView: V
     var isEmpty: Bool = false
     let isError: Bool
     let errorMessage: String?
-    let loadingContent: () -> LoadingView
+    let content:  Content
+    let loadingContent: LoadingView
+    var emptyContent: EmptyView
     let errorContent: (String) -> ErrorView
-    var emptyContent: () -> EmptyView
-    let content: () -> Content
 
     init(
         loadingWhen: Bool,
         emptyWhen: Bool = false,
         errorWhen: Bool = false,
         errorMessage: String? = nil,
-        @ViewBuilder loadingView: @escaping () -> LoadingView = { ProgressView() },
+        @ViewBuilder content: () -> Content,
+        @ViewBuilder loadingView: () -> LoadingView = { ProgressView() },
+        @ViewBuilder emptyView: () -> EmptyView = { Text("No content available") },
         @ViewBuilder errorView: @escaping (String) -> ErrorView = { error in
             Text(error).foregroundColor(.red)
-        },
-        @ViewBuilder emptyView: @escaping () -> EmptyView = { Text("No content available") },
-        @ViewBuilder content: @escaping () -> Content
+        }
     ) {
         self.isLoading = loadingWhen
         self.isError = errorWhen
         self.isEmpty = emptyWhen
         self.errorMessage = errorMessage
-        self.loadingContent = loadingView
+        self.loadingContent = loadingView()
         self.errorContent = errorView
-        self.emptyContent = emptyView
-        self.content = content
+        self.emptyContent = emptyView()
+        self.content = content()
     }
 
     var body: some View {
         if isLoading {
-            loadingContent()
+            loadingContent
         } else if isError || errorMessage != nil {
             errorContent(errorMessage ?? "An error occurred")
         } else if isEmpty {
-            emptyContent()
+            emptyContent
         } else {
-            content()
+            content
         }
     }
 }

@@ -8,14 +8,9 @@
 import SwiftUI
 
 struct SplashView: View {
-    @ViewBuilder
-    private var backgroundColor: some View {
-        Color.primaryColor.ignoresSafeArea()
-    }
-    
     var body: some View {
         ZStack {
-            backgroundColor
+            Color.primaryColor.ignoresSafeArea()
             ProgressView()
                 .tint(Color.white)
                 .scaleEffect(1.5)
