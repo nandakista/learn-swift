@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Repo: Codable {
+struct Repo: Codable, Hashable {
     let name: String?
     let owner: GithubUser?
     let description: String?

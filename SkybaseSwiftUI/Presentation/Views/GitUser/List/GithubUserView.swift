@@ -20,18 +20,16 @@ struct GithubUserView: View {
             content: {
                 List {
                     ForEach(viewModel.dataList) { githubUser in
-                        NavigationLink(
-                            destination:
-                                GithubUserDetailView(username: githubUser.username ?? "")
-                                .toolbar(.hidden, for: .tabBar),
-                            label: {
-                                GitUserItemList(
-                                    githubUser: githubUser
-                                )
-                            }
-                        )
+                        NavigationLink(value: githubUser) {
+                            GitUserItemList(githubUser: githubUser)
+                        }
                     }
                 }
+                .navigationDestination(for: GithubUser.self, destination: { githubUser in
+                    GithubUserDetailView(
+                        username: githubUser.username ?? ""
+                    ).toolbar(.hidden, for: .tabBar)
+                })
                 .listStyle(.plain)
                 .navigationTitle("Github Users")
                 .toolbar {
