@@ -13,11 +13,6 @@ class ProfileViewModel : BaseViewModel<GithubUser> {
     private let authManager = AuthManager.shared // TODO: Why using singleton doesn't work ?
     
     init(dataSource: IGithubDataSource) {
-        /* TODO: Preview Mode
-         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-         self.allUsers.append(DeveloperPreview.instance.githubUser)
-         })
-         */
         self.dataSource = dataSource
         super.init()
         onGetProfile()

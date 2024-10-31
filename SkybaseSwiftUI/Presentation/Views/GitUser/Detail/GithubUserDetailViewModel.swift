@@ -12,11 +12,6 @@ class GithubUserDetailViewModel: BaseViewModel<GithubUser> {
     private let dataSource: IGithubDataSource
     
     init(dataSource: IGithubDataSource, username: String) {
-        /* TODO: Preview Mode
-         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-         self.user = DeveloperPreview.instance.githubUser
-         })
-         */
         self.dataSource = dataSource;
         super.init()
         onLoadGithubUserDetail(username: username)
