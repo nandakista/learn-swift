@@ -8,12 +8,25 @@
 import Foundation
 
 final class LoginViewModel: BaseViewModel<Any> {
+    private let dataSource: IDummyDataSource
+    
+    init(dataSource: IDummyDataSource) {
+        self.dataSource = dataSource
+    }
+    
     @MainActor func onLogin(with authManager: AuthManager) {
-           showLoadingDialog()
-           Task {
-               try? await Task.sleep(for: Duration.seconds(2))
-               await authManager.setAuth();
-               dismissLoadingDialog()
-           }
-       }
+        showLoadingDialog()
+        dataSource.login()
+            .sink(
+                receiveCompletion: handleCompletion,
+                receiveValue: { [weak self] user in
+                    Task {
+                        await authManager.setAuth();
+                        print("users: \(user)")
+                        self?.dismissLoadingDialog()
+                    }
+                }
+            )
+            .store(in: &cancellables)
+    }
 }

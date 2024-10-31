@@ -1,6 +1,6 @@
 //
 //  IGithubDataSource.swift
-//  LearSwift
+//  SkybaseSwiftUI
 //
 //  Created by Nanda Kista Permana on 28/10/24.
 //

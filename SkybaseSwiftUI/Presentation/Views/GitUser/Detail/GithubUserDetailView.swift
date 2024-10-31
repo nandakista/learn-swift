@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct GithubUserDetailView: View {
-    
     @State var isFavorite: Bool = false
     @StateObject private var viewModel: GithubUserDetailViewModel
     

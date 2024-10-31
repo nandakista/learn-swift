@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject private var authManager: AuthManager
-    @StateObject private var viewModel = ProfileViewModel()
+    @StateObject private var viewModel = ProfileViewModel(dataSource: GithubDataSource())
     
     var body: some View {
         StateView(

@@ -1,6 +1,6 @@
 //
 //  NetworkManager.swift
-//  LearSwift
+//  SkybaseSwiftUI
 //
 //  Created by Nanda Kista Permana on 26/10/24.
 //
@@ -11,37 +11,31 @@ import Combine
 class NetworkManager {
     static let baseURL = URL(string: "https://api.github.com")!
     
-    static func get(path: String, queryParam: [URLQueryItem]? = nil) -> AnyPublisher<Data, any Error> {
+    static func getURLComponents(path: String, queryParam: [URLQueryItem]? = nil) -> URLComponents {
         var urlComponents: URLComponents = URLComponents(
             url: baseURL.appendingPathComponent(path),
             resolvingAgainstBaseURL: true
         )!
         
-        if let queryParam = queryParam {
-            urlComponents.queryItems = queryParam
-        }
-        
-        guard let url = urlComponents.url else {
-            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
-        }
-        
-        var request = URLRequest(url: url)
-        request.setValue("token \(gitToken)", forHTTPHeaderField: "Authorization")
-        
+        if let queryParam = queryParam { urlComponents.queryItems = queryParam }
+        return urlComponents
+    }
+    
+    static func handleRequest(request: URLRequest) -> AnyPublisher<Data, Error> {
         return URLSession.shared.dataTaskPublisher(for: request)
             .subscribe(on: DispatchQueue.global(qos: .default))
-            .tryMap({ try handleURLResponse(output: $0, url: url)})
+            .tryMap({ try handleURLResponse(output: $0, url: request.url!) })
             .mapError { error -> Error in
                 // Handle specific URLSession errors
                 let nsError = error as NSError
                 if nsError.domain == NSURLErrorDomain {
                     switch nsError.code {
-                        case NSURLErrorNotConnectedToInternet:
-                            return NetworkError.notConnectedToInternet
-                        case NSURLErrorTimedOut:
-                            return NetworkError.requestTimeout
-                        default:
-                            return NetworkError.unknown(error)
+                    case NSURLErrorNotConnectedToInternet:
+                        return NetworkError.notConnectedToInternet
+                    case NSURLErrorTimedOut:
+                        return NetworkError.requestTimeout
+                    default:
+                        return NetworkError.unknown(error)
                     }
                 }
                 return error
