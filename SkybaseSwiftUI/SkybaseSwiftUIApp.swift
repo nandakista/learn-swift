@@ -1,6 +1,6 @@
 //
-//  LearSwiftApp.swift
-//  LearSwift
+//  SkybaseSwiftUIApp.swift
+//  SkybaseSwiftUI
 //
 //  Created by Nanda Kista Permana on 26/10/23.
 //
