@@ -55,8 +55,10 @@ class NetworkManager {
             case 400:
                 throw NetworkError.badRequest
             case 401:
+                Task { await AuthManager.shared.logout() }
                 throw NetworkError.unauthorized
             case 403:
+                Task { await AuthManager.shared.logout() }
                 throw NetworkError.forbidden
             case 404:
                 throw NetworkError.notFound

@@ -8,5 +8,5 @@
 import Combine
 
 protocol IDummyDataSource {
-    func login() -> AnyPublisher<Login, any Error>
+    func login(username: String, password: String) -> AnyPublisher<Login, any Error>
 }

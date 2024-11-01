@@ -12,8 +12,8 @@ struct LoginView: View {
     
     var body: some View {
         VStack {
-            Button("Login") {
-                viewModel.onLogin()
+            Button("Bypass Login") {
+                viewModel.onBypassLogin()
             }
         }
         .loadingDialog(

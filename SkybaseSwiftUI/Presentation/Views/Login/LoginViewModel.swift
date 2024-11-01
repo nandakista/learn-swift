@@ -14,9 +14,10 @@ final class LoginViewModel: BaseViewModel<Any> {
         self.dataSource = dataSource
     }
     
-    @MainActor func onLogin() {
+    @MainActor 
+    func onBypassLogin() {
         showLoadingDialog()
-        dataSource.login()
+        dataSource.login(username: "Zeus", password: "iOS Developer")
             .sink(
                 receiveCompletion: handleCompletion,
                 receiveValue: { [weak self] data in
