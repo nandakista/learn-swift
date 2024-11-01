@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class DummyDataSource: IDummyDataSource {
-    func login() -> AnyPublisher<User, Error> {
+    func login() -> AnyPublisher<Login, Error> {
         return NetworkRequest.post(
             path: "/users",
             body: [
@@ -19,6 +19,9 @@ class DummyDataSource: IDummyDataSource {
             baseUrl: "https://reqres.in/api"
         )
         .decode(type: User.self, decoder: JSONDecoder())
+        .map({ user in
+            return Login(user: user, token: "token-dummy-Xcad32pt47cxn");
+        })
         .eraseToAnyPublisher()
     }
 }

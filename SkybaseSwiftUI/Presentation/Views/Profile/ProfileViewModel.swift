@@ -33,7 +33,7 @@ class ProfileViewModel : BaseViewModel<GithubUser> {
     @MainActor func onLogout(with authManager: AuthManager) {
         Task {
             showLoadingDialog()
-            await authManager.setUnauth()
+            await authManager.logout()
             dismissLoadingDialog()
         }
     }

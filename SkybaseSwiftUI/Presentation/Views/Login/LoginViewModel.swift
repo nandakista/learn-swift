@@ -19,10 +19,10 @@ final class LoginViewModel: BaseViewModel<Any> {
         dataSource.login()
             .sink(
                 receiveCompletion: handleCompletion,
-                receiveValue: { [weak self] user in
+                receiveValue: { [weak self] data in
                     Task {
-                        await authManager.setAuth();
-                        print("users: \(user)")
+                        print("response data: \(data)")
+                        await authManager.login(user: data.user, token: data.token);
                         self?.dismissLoadingDialog()
                     }
                 }
