@@ -5,7 +5,6 @@
 //  Created by Nanda Kista Permana on 27/10/24.
 //
 
-import Foundation
 import Combine
 
 class BaseViewModel<T>: ObservableObject {
@@ -66,8 +65,15 @@ class BaseViewModel<T>: ObservableObject {
     }
     
     func loadError(error: String) {
-        self.errorMessage = error
-        dismissLoading()
+        if (isLoading) {
+            self.errorMessage = error
+            dismissLoading()
+        }
+        
+        if (isLoadingDialog) {
+            self.errorDialogMessage = error
+            dismissLoadingDialog()
+        }
     }
     
     func loadFinish(data: T? = nil, list: [T] = []) {
@@ -79,6 +85,7 @@ class BaseViewModel<T>: ObservableObject {
             dataList = list
         }
         dismissLoading()
+        dismissLoadingDialog()
     }
     
     ///
@@ -86,7 +93,7 @@ class BaseViewModel<T>: ObservableObject {
     ///
     func showLoadingDialog() {
         isLoadingDialog = true
-        errorDialogMessage = nil
+        errorMessage = nil
     }
     
     ///
