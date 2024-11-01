@@ -12,8 +12,8 @@ struct LoginView: View {
         dataSource: DummyDataSource()
     )
     
-    @State var username: String = ""
-    @State var password: String = ""
+//    @State var username: String = ""
+//    @State var password: String = ""
     @State private var isSubmitted = false
     
     var body: some View {
@@ -26,14 +26,18 @@ struct LoginView: View {
             VStack(
                 alignment: .leading,
                 content: {
-                    TextField("Username", text: $username)
+                    TextField("Username", text: $viewModel.usernameField.text)
                         .padding()
                         .background(Color.gray.opacity(0.15).cornerRadius(10))
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
+//                        .onChange(of: viewModel.usernameField.text) { _ in
+//                            if isSubmitted { viewModel.usernameField.validate() }
+//                        }
                     
-                    if isSubmitted && username.isEmpty {
-                        Text("Field can not be empty!")
+//                    if isSubmitted && username.isEmpty {
+                    if let error = viewModel.usernameField.error, isSubmitted {
+                        Text(error)
                             .foregroundColor(.red)
                             .font(.system(size: 15))
                             .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
@@ -45,13 +49,18 @@ struct LoginView: View {
             VStack(
                 alignment: .leading,
                 content: {
-                    SecureField("Password", text: $password)
+                    SecureField("Password", text: $viewModel.passwordField.text)
                         .padding()
                         .background(Color.gray.opacity(0.15).cornerRadius(10))
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
-                    if isSubmitted && password.isEmpty {
-                        Text("Field can not be empty!")
+//                        .onChange(of: viewModel.passwordField.text) { _ in
+//                            if isSubmitted { viewModel.passwordField.validate() }
+//                        }
+                    
+//                    if isSubmitted && password.isEmpty {
+                    if let error = viewModel.passwordField.error, isSubmitted {
+                        Text(error)
                             .foregroundColor(.red)
                             .font(.system(size: 15))
                             .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
@@ -63,8 +72,12 @@ struct LoginView: View {
             
             Button(action: {
                 isSubmitted = true
-                if (username.isEmpty || password.isEmpty) { return }
-                viewModel.onLogin(username: username, password: password)
+//                if (username.isEmpty || password.isEmpty) { return }
+//                viewModel.onLogin(username: username, password: password)
+//                viewModel.onLogin()
+                if viewModel.validateAllFields() {
+                                    viewModel.onLogin()
+                                }
             }) {
                 Text("Log In")
                     .fontWeight(.semibold)
@@ -83,14 +96,15 @@ struct LoginView: View {
         }
         .padding()
         .onTapDismissKeyboard()
-        .loadingDialog(
+        .alertLoading(
             isShowing: $viewModel.isLoadingDialog
         )
         .alert(
             isPresented: $viewModel.isErrorDialog,
             content: {
                 Alert(
-                    title: Text(viewModel.errorDialogMessage ?? "Something went wrong"),
+                    title: 
+                        Text(viewModel.errorDialogMessage ?? "Something went wrong"),
                     dismissButton: .default(Text("OK"))
                 )
             }

@@ -114,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				8E674E572CD4AFE100F26E45 /* CustomTextField.swift */,
-				8E674E5A2CD4B5B900F26E45 /* FieldValidatorHelper.swift */,
 				8E1ECE3B2CCD006800211F5A /* DevToken.swift */,
 			);
 			path = Dev;
@@ -314,6 +313,7 @@
 		8E674E592CD4B5A400F26E45 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				8E674E5A2CD4B5B900F26E45 /* FieldValidatorHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";

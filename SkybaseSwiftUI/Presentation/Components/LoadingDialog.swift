@@ -7,6 +7,17 @@
 
 import SwiftUI
 
+extension View {
+    func alertLoading(isShowing: Binding<Bool>, message: String? = nil) -> some View {
+        self.modifier(
+            LoadingDialogModifier(
+                isShowing: isShowing, 
+                message: message
+            )
+        )
+    }
+}
+
 struct LoadingDialogModifier: ViewModifier {
     @Binding var isShowing: Bool
     var message: String?
@@ -18,12 +29,6 @@ struct LoadingDialogModifier: ViewModifier {
                 LoadingDialog(message: message)
             }
         }
-    }
-}
-
-extension View {
-    func loadingDialog(isShowing: Binding<Bool>, message: String? = nil) -> some View {
-        self.modifier(LoadingDialogModifier(isShowing: isShowing, message: message))
     }
 }
 

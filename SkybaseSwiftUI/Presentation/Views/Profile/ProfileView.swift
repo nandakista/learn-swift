@@ -91,7 +91,7 @@ struct ProfileView: View {
                     }
             }
         }
-        .loadingDialog(isShowing: $viewModel.isLoadingDialog)
+        .alertLoading(isShowing: $viewModel.isLoadingDialog)
     }
 }
 
