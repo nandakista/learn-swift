@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @EnvironmentObject private var authManager: AuthManager
     @StateObject private var viewModel = ProfileViewModel(dataSource: GithubDataSource())
     
     var body: some View {
@@ -88,7 +87,7 @@ struct ProfileView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Image(systemName: "rectangle.portrait.and.arrow.right")
                     .onTapGesture {
-                        viewModel.onLogout(with: authManager)
+                        viewModel.onLogout()
                     }
             }
         }

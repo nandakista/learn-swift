@@ -14,7 +14,7 @@ final class LoginViewModel: BaseViewModel<Any> {
         self.dataSource = dataSource
     }
     
-    @MainActor func onLogin(with authManager: AuthManager) {
+    @MainActor func onLogin() {
         showLoadingDialog()
         dataSource.login()
             .sink(
@@ -22,7 +22,7 @@ final class LoginViewModel: BaseViewModel<Any> {
                 receiveValue: { [weak self] data in
                     Task {
                         print("response data: \(data)")
-                        await authManager.login(user: data.user, token: data.token);
+                        await AuthManager.shared.login(user: data.user, token: data.token);
                         self?.dismissLoadingDialog()
                     }
                 }

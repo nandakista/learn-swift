@@ -16,13 +16,12 @@ enum AuthState {
 final class AuthManager: ObservableObject {
     private let tag = "AuthManager::=>"
     
-    @MainActor static let shared = AuthManager()
+    static let shared = AuthManager()
     @MainActor @Published private(set) var authState: AuthState = .initial
     
     private func log(_ text: String) -> Void { print("\(tag) \(text)")}
     
-    @MainActor
-    init() {
+    private init() {
         Task { await self.checkIsLoggedIn() }
     }
     

@@ -10,8 +10,6 @@ import Foundation
 class ProfileViewModel : BaseViewModel<GithubUser> {
     private let dataSource: IGithubDataSource
     
-    private let authManager = AuthManager.shared // TODO: Why using singleton doesn't work ?
-    
     init(dataSource: IGithubDataSource) {
         self.dataSource = dataSource
         super.init()
@@ -30,10 +28,11 @@ class ProfileViewModel : BaseViewModel<GithubUser> {
             .store(in: &cancellables)
     }
     
-    @MainActor func onLogout(with authManager: AuthManager) {
+    @MainActor 
+    func onLogout() {
         Task {
             showLoadingDialog()
-            await authManager.logout()
+            await AuthManager.shared.logout()
             dismissLoadingDialog()
         }
     }

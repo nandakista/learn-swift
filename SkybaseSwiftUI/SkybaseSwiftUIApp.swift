@@ -9,20 +9,18 @@ import SwiftUI
 
 @main
 struct SkybaseSwiftUIApp: App {
-    @StateObject var authManager = AuthManager()
+    @StateObject var authManager = AuthManager.shared
     
     var body: some Scene {
         WindowGroup {
-            Group {
-                switch authManager.authState {
-                    case .initial:
-                        SplashView()
-                    case .authenticated:
-                        MainNavigationView()
-                    case .unauthenticated:
-                        LoginView()
-                }
-            }.environmentObject(authManager)
+            switch authManager.authState {
+                case .initial:
+                    SplashView()
+                case .authenticated:
+                    MainNavigationView()
+                case .unauthenticated:
+                    LoginView()
+            }
         }
     }
 }
