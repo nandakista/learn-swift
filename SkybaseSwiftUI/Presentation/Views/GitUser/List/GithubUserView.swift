@@ -13,9 +13,9 @@ struct GithubUserView: View {
     
     var body: some View {
         StateView(
-            loadingWhen: viewModel.isLoading,
+            loadingWhen: viewModel.isLoading && !viewModel.canLoadNext,
             emptyWhen: viewModel.isEmpty,
-            errorWhen: viewModel.isError,
+            errorWhen: viewModel.isError && !viewModel.canLoadNext,
             errorMessage: viewModel.errorMessage,
             content: {
                 List {
@@ -23,6 +23,24 @@ struct GithubUserView: View {
                         NavigationLink(value: githubUser) {
                             GitUserItemList(githubUser: githubUser)
                         }
+                        .onAppear {
+                            if (githubUser == viewModel.dataList.last) {
+                                viewModel.onLoadNext()
+                            }
+                        }
+                    }
+                    if viewModel.isLoading {
+                        HStack {
+                            ProgressView()
+                            Text("Loading...")
+                        }
+                    }
+                    
+                    if let errorMessage = viewModel.errorMessage, viewModel.page > 1 {
+                        Text("Error load \(errorMessage)")
+                            .onTapGesture {
+                                viewModel.onLoadNext()
+                            }
                     }
                 }
                 .navigationDestination(for: GithubUser.self, destination: { githubUser in

@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol IGithubDataSource {
-    func getUsers() -> AnyPublisher<[GithubUser], any Error>
+    func getUsers(page: Int, perPage: Int) -> AnyPublisher<[GithubUser], any Error>
     func getUsersDetail(username: String) -> AnyPublisher<GithubUser, any Error>
     func getGitRepository() -> AnyPublisher<[Repo], any Error>
 }

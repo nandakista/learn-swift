@@ -42,7 +42,7 @@ struct StateView<Content: View, LoadingView: View, ErrorView: View, EmptyView: V
     var body: some View {
         if isLoading {
             loadingContent
-        } else if isError || errorMessage != nil {
+        } else if isError && errorMessage != nil {
             errorContent(errorMessage ?? "An error occurred")
         } else if isEmpty {
             emptyContent

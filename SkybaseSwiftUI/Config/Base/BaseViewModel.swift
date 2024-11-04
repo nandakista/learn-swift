@@ -9,6 +9,28 @@ import Combine
 
 class BaseViewModel<T>: ObservableObject {
     var cancellables = Set<AnyCancellable>()
+    var page: Int = 1
+    var perPage: Int = 20
+    
+    /*
+     State for ui in the page, example is in [StateView]
+     */
+    @Published var isEmpty: Bool = true
+    @Published var isError: Bool = false
+    @Published var isLoading: Bool = false
+//    @Published var isLoadingNext: Bool = false
+    @Published var canLoadNext: Bool = false
+    
+    /*
+        State for dialog, alert, and similiar
+    */
+    @Published var isLoadingDialog: Bool = false
+    @Published var isErrorDialog: Bool = false
+    @Published var errorDialogMessage: String? = nil {
+        didSet {
+            isErrorDialog = errorDialogMessage != nil
+        }
+    }
     
     @Published var dataList: [T] = [] {
         didSet {
@@ -28,24 +50,6 @@ class BaseViewModel<T>: ObservableObject {
         }
     }
     
-    /*
-        State for ui in the page, example is in [StateView]
-    */
-    @Published var isEmpty: Bool = true
-    @Published var isLoading: Bool = false
-    @Published var isError: Bool = false
-    
-    /*
-        State for dialog, alert, and similiar
-    */
-    @Published var isLoadingDialog: Bool = false
-    @Published var isErrorDialog: Bool = false
-    @Published var errorDialogMessage: String? = nil {
-        didSet {
-            isErrorDialog = errorDialogMessage != nil
-        }
-    }
-    
     func handleCompletion(completion: Subscribers.Completion<Error>) {
         switch completion {
             case .failure(let error):
@@ -56,12 +60,18 @@ class BaseViewModel<T>: ObservableObject {
     }
     
     func loadingState() {
+//        if (page > 1) {
+//            isLoadingNext = true
+//        } else {
+//            isLoading = true
+//        }
         isLoading = true
         errorMessage = nil
     }
     
     func dismissLoading() {
         isLoading = false
+//        isLoadingNext = false
     }
     
     func loadError(error: String) {
@@ -76,14 +86,19 @@ class BaseViewModel<T>: ObservableObject {
         }
     }
     
-    func loadFinish(data: T? = nil, list: [T] = []) {
+    func loadFinish(page:Int? = nil ,data: T? = nil, list: [T] = []) {
         if let data = data {
             dataObj = data
         }
         
         if (!list.isEmpty) {
-            dataList = list
+            dataList.append(contentsOf: list)
         }
+        
+        if let page = page {
+            self.page = page
+        }
+        canLoadNext = list.count == perPage
         dismissLoading()
         dismissLoadingDialog()
     }

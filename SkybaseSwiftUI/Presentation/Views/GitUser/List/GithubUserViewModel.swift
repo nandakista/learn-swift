@@ -17,16 +17,22 @@ class GithubUserViewModel: BaseViewModel<GithubUser> {
         onLoadGithubUser()
     }
     
-    func onLoadGithubUser() {
+    func onLoadNext() {
+        onLoadGithubUser(page: page + 1)
+    }
+    
+    func onLoadGithubUser(page: Int = 1) {
         loadingState()
-        dataSource.getUsers()
-            .sink(
-                receiveCompletion: handleCompletion,
-                receiveValue: { [weak self] users in
-                    self?.loadFinish(list: users)
-                }
-            )
-            .store(in: &cancellables)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.dataSource.getUsers(page: page, perPage: self.perPage)
+                .sink(
+                    receiveCompletion: self.handleCompletion,
+                    receiveValue: { [weak self] users in
+                        self?.loadFinish(page: page, list: users)
+                    }
+                )
+                .store(in: &self.cancellables)
+        }
     }
     
 }
