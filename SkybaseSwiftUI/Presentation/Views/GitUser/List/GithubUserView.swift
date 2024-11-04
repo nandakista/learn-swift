@@ -13,9 +13,9 @@ struct GithubUserView: View {
     
     var body: some View {
         StateView(
-            loadingWhen: viewModel.isLoading && !viewModel.canLoadNext,
+            loadingWhen: viewModel.isLoading,
             emptyWhen: viewModel.isEmpty,
-            errorWhen: viewModel.isError && !viewModel.canLoadNext,
+            errorWhen: viewModel.isError,
             errorMessage: viewModel.errorMessage,
             content: {
                 List {
@@ -29,15 +29,16 @@ struct GithubUserView: View {
                             }
                         }
                     }
-                    if viewModel.isLoading {
+                    
+                    if viewModel.isLoadingNext {
                         HStack {
                             ProgressView()
                             Text("Loading...")
                         }
                     }
                     
-                    if let errorMessage = viewModel.errorMessage, viewModel.page > 1 {
-                        Text("Error load \(errorMessage)")
+                    if viewModel.isErrorNext {
+                        Text("Tap to try again")
                             .onTapGesture {
                                 viewModel.onLoadNext()
                             }

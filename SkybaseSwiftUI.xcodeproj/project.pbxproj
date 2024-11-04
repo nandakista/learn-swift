@@ -12,6 +12,7 @@
 		8E1ECE472CCE39AB00211F5A /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1ECE462CCE39AB00211F5A /* BaseViewModel.swift */; };
 		8E1ECE492CCE8CE600211F5A /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1ECE482CCE8CE600211F5A /* ProfileViewModel.swift */; };
 		8E42BD542CD851CC00A9EC30 /* DevToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E42BD532CD851CC00A9EC30 /* DevToken.swift */; };
+		8E42BD5B2CD8B5A900A9EC30 /* RequestState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E42BD5A2CD8B5A500A9EC30 /* RequestState.swift */; };
 		8E4FAE572CD3B972008A8E2D /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4FAE562CD3B972008A8E2D /* Login.swift */; };
 		8E53F4672CD3335000DFC6AC /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E53F4662CD3335000DFC6AC /* NetworkRequest.swift */; };
 		8E53F4692CD341E400DFC6AC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E53F4682CD341E400DFC6AC /* User.swift */; };
@@ -56,6 +57,7 @@
 		8E1ECE462CCE39AB00211F5A /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		8E1ECE482CCE8CE600211F5A /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		8E42BD532CD851CC00A9EC30 /* DevToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevToken.swift; sourceTree = "<group>"; };
+		8E42BD5A2CD8B5A500A9EC30 /* RequestState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestState.swift; sourceTree = "<group>"; };
 		8E4FAE562CD3B972008A8E2D /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		8E53F4662CD3335000DFC6AC /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		8E53F4682CD341E400DFC6AC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		8E1ECE452CCE399D00211F5A /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				8E42BD5A2CD8B5A500A9EC30 /* RequestState.swift */,
 				8E1ECE462CCE39AB00211F5A /* BaseViewModel.swift */,
 			);
 			path = Base;
@@ -488,6 +491,7 @@
 				8E674E562CD4922400F26E45 /* ViewExtension.swift in Sources */,
 				8E674E512CD440A300F26E45 /* KeychainManager.swift in Sources */,
 				8E53F46B2CD352B600DFC6AC /* NetworkExtension.swift in Sources */,
+				8E42BD5B2CD8B5A900A9EC30 /* RequestState.swift in Sources */,
 				8E1ECE472CCE39AB00211F5A /* BaseViewModel.swift in Sources */,
 				8E61B3DF2AE9DB6A005B882D /* SkybaseSwiftUIApp.swift in Sources */,
 				8E4FAE572CD3B972008A8E2D /* Login.swift in Sources */,
