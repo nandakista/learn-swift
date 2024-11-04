@@ -15,17 +15,27 @@ enum ContentType {
 }
 
 class NetworkRequest {
-    static func get(path: String, queryParam: [URLQueryItem]? = nil) -> AnyPublisher<Data, any Error> {
-        let urlComponents = NetworkManager.getURLComponents(path: path, queryParam: queryParam)
-        guard let url = urlComponents.url else {
-            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
-        }
-        
-        var request = URLRequest(url: url)
+    static private func setHeader(request: inout URLRequest) {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("token \(gitToken)", forHTTPHeaderField: "Authorization")
-        
-        return NetworkManager.handleRequest(request: request)
+    }
+    
+    static func get(
+        path: String,
+        queryParam: [URLQueryItem]? = nil,
+        baseUrl: String? = nil
+    ) -> AnyPublisher<Data, any Error> {
+        do {
+            let request = try NetworkManager.getURLRequest(
+                method: "GET",
+                path: path,
+                queryParam: queryParam,
+                baseUrl: baseUrl
+            )
+            return NetworkManager.handleRequest(request: request)
+        } catch {
+            return Fail(error: error).eraseToAnyPublisher()
+        }
     }
     
     static func post(
@@ -34,22 +44,18 @@ class NetworkRequest {
         body: [String: Any],
         baseUrl: String? = nil
     ) -> AnyPublisher<Data, Error> {
-        let urlComponents = NetworkManager.getURLComponents(path: path)
-        guard let url = urlComponents.url else {
-            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
+        do {
+            let request = try NetworkManager.getURLRequest(
+                method: "POST",
+                path: path,
+                contentType: contentType,
+                body: body,
+                baseUrl: baseUrl
+            )
+            return NetworkManager.handleRequest(request: request)
+        } catch {
+            return Fail(error: error).eraseToAnyPublisher()
         }
-        
-        var request = URLRequest(url: url)
-        
-        if let baseUrl = baseUrl {
-            request = URLRequest(url: URL(string: "\(baseUrl)\(path)")!)
-        }
-        
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("token \(gitToken)", forHTTPHeaderField: "Authorization")
-        request.setBody(contentType: contentType, body: body)
-        return NetworkManager.handleRequest(request: request)
     }
      
     static func delete(
@@ -58,22 +64,18 @@ class NetworkRequest {
         body: [String: Any],
         baseUrl: String? = nil
     ) -> AnyPublisher<Data, Error> {
-        let urlComponents = NetworkManager.getURLComponents(path: path)
-        guard let url = urlComponents.url else {
-            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
+        do {
+            let request = try NetworkManager.getURLRequest(
+                method: "DELETE",
+                path: path,
+                contentType: contentType,
+                body: body,
+                baseUrl: baseUrl
+            )
+            return NetworkManager.handleRequest(request: request)
+        } catch {
+            return Fail(error: error).eraseToAnyPublisher()
         }
-        
-        var request = URLRequest(url: url)
-        
-        if let baseUrl = baseUrl {
-            request = URLRequest(url: URL(string: "\(baseUrl)\(path)")!)
-        }
-        
-        request.httpMethod = "DELETE"
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("token \(gitToken)", forHTTPHeaderField: "Authorization")
-        request.setBody(contentType: contentType, body: body)
-        return NetworkManager.handleRequest(request: request)
     }
     
     static func put(
@@ -82,22 +84,18 @@ class NetworkRequest {
         body: [String: Any],
         baseUrl: String? = nil
     ) -> AnyPublisher<Data, Error> {
-        let urlComponents = NetworkManager.getURLComponents(path: path)
-        guard let url = urlComponents.url else {
-            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
+        do {
+            let request = try NetworkManager.getURLRequest(
+                method: "PUT",
+                path: path,
+                contentType: contentType,
+                body: body,
+                baseUrl: baseUrl
+            )
+            return NetworkManager.handleRequest(request: request)
+        } catch {
+            return Fail(error: error).eraseToAnyPublisher()
         }
-        
-        var request = URLRequest(url: url)
-        
-        if let baseUrl = baseUrl {
-            request = URLRequest(url: URL(string: "\(baseUrl)\(path)")!)
-        }
-        
-        request.httpMethod = "PUT"
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("token \(gitToken)", forHTTPHeaderField: "Authorization")
-        request.setBody(contentType: contentType, body: body)
-        return NetworkManager.handleRequest(request: request)
     }
     
     static func patch(
@@ -106,21 +104,17 @@ class NetworkRequest {
         body: [String: Any],
         baseUrl: String? = nil
     ) -> AnyPublisher<Data, Error> {
-        let urlComponents = NetworkManager.getURLComponents(path: path)
-        guard let url = urlComponents.url else {
-            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
+        do {
+            let request = try NetworkManager.getURLRequest(
+                method: "PATCH",
+                path: path,
+                contentType: contentType,
+                body: body,
+                baseUrl: baseUrl
+            )
+            return NetworkManager.handleRequest(request: request)
+        } catch {
+            return Fail(error: error).eraseToAnyPublisher()
         }
-        
-        var request = URLRequest(url: url)
-        
-        if let baseUrl = baseUrl {
-            request = URLRequest(url: URL(string: "\(baseUrl)\(path)")!)
-        }
-        
-        request.httpMethod = "PATCH"
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("token \(gitToken)", forHTTPHeaderField: "Authorization")
-        request.setBody(contentType: contentType, body: body)
-        return NetworkManager.handleRequest(request: request)
     }
 }

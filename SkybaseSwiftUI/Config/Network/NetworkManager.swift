@@ -11,14 +11,37 @@ import Combine
 class NetworkManager {
     static let baseURL = URL(string: "https://api.github.com")!
     
-    static func getURLComponents(path: String, queryParam: [URLQueryItem]? = nil) -> URLComponents {
+    static func getURLRequest(
+        method: String,
+        path: String,
+        queryParam: [URLQueryItem]? = nil,
+        contentType: ContentType? = nil,
+        body: [String: Any]? = nil,
+        baseUrl: String? = nil
+    ) throws -> URLRequest {
         var urlComponents: URLComponents = URLComponents(
             url: baseURL.appendingPathComponent(path),
             resolvingAgainstBaseURL: true
         )!
         
         if let queryParam = queryParam { urlComponents.queryItems = queryParam }
-        return urlComponents
+        
+        guard let url = urlComponents.url else {
+            throw URLError(.badURL)
+        }
+        
+        var request = URLRequest(url: url)
+        if let baseUrl = baseUrl {
+            request = URLRequest(url: URL(string: "\(baseUrl)\(path)")!)
+        }
+        
+        request.httpMethod = method
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("token \(gitToken)", forHTTPHeaderField: "Authorization")
+        if let contentType = contentType, let body = body {
+            request.setBody(contentType: contentType, body: body)
+        }
+        return request
     }
     
     static func handleRequest(request: URLRequest) -> AnyPublisher<Data, Error> {

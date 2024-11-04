@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8E06C0AF2CCFC9D700E9264F /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06C0AE2CCFC9D700E9264F /* StateView.swift */; };
-		8E1ECE3C2CCD006800211F5A /* DevToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1ECE3B2CCD006800211F5A /* DevToken.swift */; };
 		8E1ECE412CCD16C100211F5A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1ECE402CCD16C100211F5A /* NetworkManager.swift */; };
 		8E1ECE472CCE39AB00211F5A /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1ECE462CCE39AB00211F5A /* BaseViewModel.swift */; };
 		8E1ECE492CCE8CE600211F5A /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1ECE482CCE8CE600211F5A /* ProfileViewModel.swift */; };
+		8E42BD542CD851CC00A9EC30 /* DevToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E42BD532CD851CC00A9EC30 /* DevToken.swift */; };
 		8E4FAE572CD3B972008A8E2D /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4FAE562CD3B972008A8E2D /* Login.swift */; };
 		8E53F4672CD3335000DFC6AC /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E53F4662CD3335000DFC6AC /* NetworkRequest.swift */; };
 		8E53F4692CD341E400DFC6AC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E53F4682CD341E400DFC6AC /* User.swift */; };
@@ -29,8 +29,6 @@
 		8E61B3F52AE9EEDC005B882D /* GitUserItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E61B3F42AE9EEDC005B882D /* GitUserItemList.swift */; };
 		8E674E512CD440A300F26E45 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E674E502CD440A300F26E45 /* KeychainManager.swift */; };
 		8E674E562CD4922400F26E45 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E674E552CD4922400F26E45 /* ViewExtension.swift */; };
-		8E674E582CD4AFE100F26E45 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E674E572CD4AFE100F26E45 /* CustomTextField.swift */; };
-		8E674E5B2CD4B5B900F26E45 /* FieldValidatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E674E5A2CD4B5B900F26E45 /* FieldValidatorHelper.swift */; };
 		8E7E7C852CD3152F0093C969 /* TabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7E7C842CD3152F0093C969 /* TabItemView.swift */; };
 		8E88938F2CCF064200ABDE77 /* IGithubDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E88938E2CCF064200ABDE77 /* IGithubDataSource.swift */; };
 		8E8893C72CCF23AF00ABDE77 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8893C62CCF23AF00ABDE77 /* NetworkError.swift */; };
@@ -54,10 +52,10 @@
 
 /* Begin PBXFileReference section */
 		8E06C0AE2CCFC9D700E9264F /* StateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
-		8E1ECE3B2CCD006800211F5A /* DevToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevToken.swift; sourceTree = "<group>"; };
 		8E1ECE402CCD16C100211F5A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8E1ECE462CCE39AB00211F5A /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		8E1ECE482CCE8CE600211F5A /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		8E42BD532CD851CC00A9EC30 /* DevToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevToken.swift; sourceTree = "<group>"; };
 		8E4FAE562CD3B972008A8E2D /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		8E53F4662CD3335000DFC6AC /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		8E53F4682CD341E400DFC6AC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -76,8 +74,6 @@
 		8E61B3F42AE9EEDC005B882D /* GitUserItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitUserItemList.swift; sourceTree = "<group>"; };
 		8E674E502CD440A300F26E45 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		8E674E552CD4922400F26E45 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
-		8E674E572CD4AFE100F26E45 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		8E674E5A2CD4B5B900F26E45 /* FieldValidatorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldValidatorHelper.swift; sourceTree = "<group>"; };
 		8E7E7C842CD3152F0093C969 /* TabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemView.swift; sourceTree = "<group>"; };
 		8E88938E2CCF064200ABDE77 /* IGithubDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGithubDataSource.swift; sourceTree = "<group>"; };
 		8E8893C62CCF23AF00ABDE77 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -110,20 +106,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8E1ECE3A2CCD005B00211F5A /* Dev */ = {
-			isa = PBXGroup;
-			children = (
-				8E674E572CD4AFE100F26E45 /* CustomTextField.swift */,
-				8E674E5A2CD4B5B900F26E45 /* FieldValidatorHelper.swift */,
-				8E1ECE3B2CCD006800211F5A /* DevToken.swift */,
-			);
-			path = Dev;
-			sourceTree = "<group>";
-		};
 		8E1ECE3D2CCD162C00211F5A /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				8E674E592CD4B5A400F26E45 /* Helpers */,
 				8E674E4F2CD4409300F26E45 /* Database */,
 				8EAA4C062C8001C8001223BC /* Extensions */,
 			);
@@ -174,6 +159,14 @@
 				8E1ECE462CCE39AB00211F5A /* BaseViewModel.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		8E42BD522CD8516700A9EC30 /* Dev */ = {
+			isa = PBXGroup;
+			children = (
+				8E42BD532CD851CC00A9EC30 /* DevToken.swift */,
+			);
+			path = Dev;
 			sourceTree = "<group>";
 		};
 		8E4711532C7FF88C00A729C6 /* GitUser */ = {
@@ -230,10 +223,10 @@
 		8E61B3DD2AE9DB6A005B882D /* SkybaseSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				8E42BD522CD8516700A9EC30 /* Dev */,
 				8EE29B9B2CD27D680047E48F /* Config */,
 				8E1ECE3D2CCD162C00211F5A /* Core */,
 				8E1ECE422CCDAD2F00211F5A /* Data */,
-				8E1ECE3A2CCD005B00211F5A /* Dev */,
 				8E1ECE432CCDAD6E00211F5A /* Presentation */,
 				8E61B3DE2AE9DB6A005B882D /* SkybaseSwiftUIApp.swift */,
 				8E54290F2CD1108E00E3E718 /* Launch Screen.storyboard */,
@@ -309,13 +302,6 @@
 				8E674E502CD440A300F26E45 /* KeychainManager.swift */,
 			);
 			path = Database;
-			sourceTree = "<group>";
-		};
-		8E674E592CD4B5A400F26E45 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8E7E7C832CD315190093C969 /* Components */ = {
@@ -488,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EE29B9E2CD280BF0047E48F /* LoadingDialog.swift in Sources */,
+				8E42BD542CD851CC00A9EC30 /* DevToken.swift in Sources */,
 				8EDD5CC32C7EB667005BB57C /* FavoriteView.swift in Sources */,
 				8E1ECE492CCE8CE600211F5A /* ProfileViewModel.swift in Sources */,
 				8E61B3EF2AE9DB8C005B882D /* GithubUserDetailView.swift in Sources */,
@@ -503,18 +490,15 @@
 				8E53F46B2CD352B600DFC6AC /* NetworkExtension.swift in Sources */,
 				8E1ECE472CCE39AB00211F5A /* BaseViewModel.swift in Sources */,
 				8E61B3DF2AE9DB6A005B882D /* SkybaseSwiftUIApp.swift in Sources */,
-				8E1ECE3C2CCD006800211F5A /* DevToken.swift in Sources */,
 				8E4FAE572CD3B972008A8E2D /* Login.swift in Sources */,
 				8E61B3F52AE9EEDC005B882D /* GitUserItemList.swift in Sources */,
 				8EF452652C8021F3003FF427 /* GithubDataSource.swift in Sources */,
 				8EF452672C8030B1003FF427 /* ResponseList.swift in Sources */,
 				8E1ECE412CCD16C100211F5A /* NetworkManager.swift in Sources */,
 				8E88938F2CCF064200ABDE77 /* IGithubDataSource.swift in Sources */,
-				8E674E5B2CD4B5B900F26E45 /* FieldValidatorHelper.swift in Sources */,
 				8EE29B982CD25B420047E48F /* ImageExtension.swift in Sources */,
 				8EBA536A2C7E908200097D62 /* GithubUser.swift in Sources */,
 				8E5429152CD1241100E3E718 /* AuthManager.swift in Sources */,
-				8E674E582CD4AFE100F26E45 /* CustomTextField.swift in Sources */,
 				8E8893C72CCF23AF00ABDE77 /* NetworkError.swift in Sources */,
 				8E06C0AF2CCFC9D700E9264F /* StateView.swift in Sources */,
 				8EE29BA02CD281650047E48F /* LoginViewModel.swift in Sources */,
