@@ -15,11 +15,6 @@ enum ContentType {
 }
 
 class NetworkRequest {
-    static private func setHeader(request: inout URLRequest) {
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("token \(gitToken)", forHTTPHeaderField: "Authorization")
-    }
-    
     static func get(
         path: String,
         queryParam: [URLQueryItem]? = nil,
