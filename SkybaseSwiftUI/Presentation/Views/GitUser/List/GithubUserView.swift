@@ -18,11 +18,14 @@ struct GithubUserView: View {
             errorWhen: viewModel.isError,
             errorMessage: viewModel.errorMessage,
             content: {
-                List {
-                    ForEach(viewModel.dataList) { githubUser in
-                        NavigationLink(value: githubUser) {
-                            GitUserItemList(githubUser: githubUser)
-                        }
+                PaginationList(
+                    errorNextWhen: viewModel.isErrorNext,
+                    loadingNextWhen: viewModel.isLoadingNext,
+                    onLoadNext: viewModel.onLoadNext,
+                    data: viewModel.dataList
+                ) { githubUser in
+                    NavigationLink(value: githubUser) {
+                        GitUserItemList(githubUser: githubUser)
                     }
                 }
                 .navigationDestination(for: GithubUser.self, destination: { githubUser in

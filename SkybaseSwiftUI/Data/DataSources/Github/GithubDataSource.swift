@@ -9,13 +9,13 @@ import Foundation
 import Combine
 
 class GithubDataSource: IGithubDataSource {
-    func getUsers() -> AnyPublisher<[GithubUser], any Error> {
+    func getUsers(page: Int, perPage: Int) -> AnyPublisher<[GithubUser], any Error> {
         return NetworkRequest.get(
             path: "/search/users",
             queryParam: [
                 URLQueryItem(name: "q", value: "nanda"),
-                URLQueryItem(name: "page", value: "1"),
-                URLQueryItem(name: "per_page", value: "10"),
+                URLQueryItem(name: "page", value: "\(page)"),
+                URLQueryItem(name: "per_page", value: "\(perPage)"),
             ]
         )
         .decode(type: ResponseList<GithubUser>.self, decoder: JSONDecoder())

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Login: Codable, Hashable {
+struct Login: Codable, Hashable, Equatable {
     let user: User?
     let token: String?
     

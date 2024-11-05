@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GithubUser: Identifiable, Codable, Hashable {
+struct GithubUser: Identifiable, Codable, Hashable, Equatable {
     let id : Int
     let username: String?
     let name: String?

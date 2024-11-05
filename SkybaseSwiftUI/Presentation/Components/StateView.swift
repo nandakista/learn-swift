@@ -10,7 +10,7 @@ import SwiftUI
 struct StateView<Content: View, LoadingView: View, ErrorView: View, EmptyView: View>: View {
     let isLoading: Bool
     var isEmpty: Bool = false
-    let isError: Bool
+    var isError: Bool = false
     let errorMessage: String?
     let content:  Content
     let loadingContent: LoadingView
@@ -42,7 +42,7 @@ struct StateView<Content: View, LoadingView: View, ErrorView: View, EmptyView: V
     var body: some View {
         if isLoading {
             loadingContent
-        } else if isError || errorMessage != nil {
+        } else if isError && errorMessage != nil {
             errorContent(errorMessage ?? "An error occurred")
         } else if isEmpty {
             emptyContent
