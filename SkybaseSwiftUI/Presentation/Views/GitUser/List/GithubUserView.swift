@@ -18,30 +18,14 @@ struct GithubUserView: View {
             errorWhen: viewModel.isError,
             errorMessage: viewModel.errorMessage,
             content: {
-                List {
-                    ForEach(viewModel.dataList) { githubUser in
-                        NavigationLink(value: githubUser) {
-                            GitUserItemList(githubUser: githubUser)
-                        }
-                        .onAppear {
-                            if (githubUser == viewModel.dataList.last) {
-                                viewModel.onLoadNext()
-                            }
-                        }
-                    }
-                    
-                    if viewModel.isLoadingNext {
-                        HStack {
-                            ProgressView()
-                            Text("Loading...")
-                        }
-                    }
-                    
-                    if viewModel.isErrorNext {
-                        Text("Tap to try again")
-                            .onTapGesture {
-                                viewModel.onLoadNext()
-                            }
+                PaginationList(
+                    errorNextWhen: viewModel.isErrorNext,
+                    loadingNextWhen: viewModel.isLoadingNext,
+                    onLoadNext: viewModel.onLoadNext,
+                    data: viewModel.dataList
+                ) { githubUser in
+                    NavigationLink(value: githubUser) {
+                        GitUserItemList(githubUser: githubUser)
                     }
                 }
                 .navigationDestination(for: GithubUser.self, destination: { githubUser in

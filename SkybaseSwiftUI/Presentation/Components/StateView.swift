@@ -10,7 +10,7 @@ import SwiftUI
 struct StateView<Content: View, LoadingView: View, ErrorView: View, EmptyView: View>: View {
     let isLoading: Bool
     var isEmpty: Bool = false
-    let isError: Bool
+    var isError: Bool = false
     let errorMessage: String?
     let content:  Content
     let loadingContent: LoadingView
