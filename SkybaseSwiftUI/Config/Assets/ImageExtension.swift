@@ -13,4 +13,5 @@ extension Image {
     static let baseEmpty = Image("img_empty")
     static let baseError = Image("img_error")
     static let baseNotFound = Image("img_not_found")
+    static let icLoading = Image("ic_loading")
 }

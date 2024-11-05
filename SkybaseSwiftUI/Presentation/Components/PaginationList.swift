@@ -22,7 +22,8 @@ struct PaginationList<T: Identifiable & Equatable, Content: View, Loading: View,
         onLoadNext: @escaping () -> Void,
         data: [T] = [],
         @ViewBuilder loadingView: () -> Loading = { HStack {
-            ProgressView()
+            // Using CustomProgressView because of Bug in ProgressView() that sometimes not appear
+            CustomProgressView()
             Text("Loading...")
         }
         },
