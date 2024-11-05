@@ -79,7 +79,7 @@ class BaseViewModel<T>: ObservableObject {
         if (!list.isEmpty) {
             dataList.append(contentsOf: list)
             if let page = page { self.page = page }
-            canLoadNext = list.count == perPage
+            canLoadNext = list.count >= perPage
         }
         
         if (dataList.isEmpty && dataObj == nil) { state = .empty }

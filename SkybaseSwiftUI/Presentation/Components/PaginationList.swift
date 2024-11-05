@@ -22,14 +22,16 @@ struct PaginationList<T: Identifiable & Equatable, Content: View, Loading: View,
         onLoadNext: @escaping () -> Void,
         data: [T] = [],
         @ViewBuilder loadingView: () -> Loading = { HStack {
-            // Using CustomProgressView because of Bug in ProgressView() that sometimes not appear
-            CustomProgressView()
-            Text("Loading...")
+            /// There is some bug in SwiftUI when put ProgressView inside the List. Temporary solution are use one of the following :
+            /// 1. CustomProgressView()
+            /// 2. ProgressView with different id
+            ProgressView().id(UUID())
+            Text("Loading...").font(.caption)
         }
         },
         @ViewBuilder errorView: () -> Error = { HStack {
             Image(systemName: "arrow.clockwise")
-            Text("Tap to try again")
+            Text("Tap to try again").font(.caption)
         }
         },
         @ViewBuilder itemBuilder: @escaping (T) -> Content
