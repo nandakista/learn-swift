@@ -10,21 +10,28 @@ import Combine
 
 class GithubUserDetailViewModel: BaseViewModel<GithubUser> {
     private let dataSource: IGithubDataSource
+    private let username: String
     
     init(dataSource: IGithubDataSource, username: String) {
         self.dataSource = dataSource;
+        self.username = username
         super.init()
-        onLoadGithubUserDetail(username: username)
+        Task { await onRefresh() }
     }
     
-    func onLoadGithubUserDetail(username: String) {
-        loadingState()
-        dataSource.getUsersDetail(username: username)
-            .sink(
-                receiveCompletion: handleCompletion,
-                receiveValue: { [weak self] user in
-                    self?.loadFinish(data: user)
-                })
-            .store(in: &cancellables)
+    func onRefresh() async {
+        await onLoadGithubUserDetail()
+    }
+    
+    @MainActor
+    func onLoadGithubUserDetail() async {
+        self.loadingState()
+        do {
+            try await Task.sleep(for: .seconds(1))
+            let user = try await self.dataSource.getUsersDetail(username: username).async()
+            self.loadFinish(data: user)
+        } catch {
+            self.loadError(error: error.localizedDescription)
+        }
     }
 }

@@ -10,7 +10,10 @@ import Combine
 
 
 class BaseViewModel<T>: ObservableObject {
+    /// Only use when you call the data in the Combine subscription
+    /// otherwise when you use async await task you don't need call .store(in: &cancellables)
     var cancellables = Set<AnyCancellable>()
+    
     var page: Int = 1
     var perPage: Int = 20
     
@@ -77,6 +80,11 @@ class BaseViewModel<T>: ObservableObject {
         }
         
         if (!list.isEmpty) {
+            if let page = page {
+                if (page == 1 && !dataList.isEmpty) {
+                    dataList.removeAll()
+                }
+            }
             dataList.append(contentsOf: list)
             if let page = page { self.page = page }
             canLoadNext = list.count >= perPage

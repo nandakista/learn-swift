@@ -14,23 +14,25 @@ class GithubUserViewModel: BaseViewModel<GithubUser> {
     init(dataSource: IGithubDataSource) {
         self.dataSource = dataSource
         super.init()
-        onLoadGithubUser()
+        Task { await onRefresh() }
     }
     
     func onLoadNext() {
-        onLoadGithubUser(page: page + 1)
+        Task { await onLoadGithubUser(page: page + 1) }
     }
     
-    func onLoadGithubUser(page: Int = 1) {
-        loadingState()
-        self.dataSource.getUsers(page: page, perPage: self.perPage)
-            .sink(
-                receiveCompletion: self.handleCompletion,
-                receiveValue: { [weak self] users in
-                    self?.loadFinish(page: page, list: users)
-                }
-            )
-            .store(in: &self.cancellables)
+    func onRefresh() async {
+        await onLoadGithubUser(page: 1)
     }
     
+    @MainActor
+    func onLoadGithubUser(page: Int = 1) async {
+        self.loadingState()
+        do {
+            let users = try await self.dataSource.getUsers(page: page, perPage: self.perPage).async()
+            self.loadFinish(page: page, list: users)
+        } catch {
+            self.loadError(error: error.localizedDescription)
+        }
+    }
 }
