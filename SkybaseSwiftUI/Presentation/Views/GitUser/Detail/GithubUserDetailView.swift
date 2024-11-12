@@ -74,7 +74,7 @@ struct GithubUserDetailView: View {
                     .padding(.horizontal, 16)
                     //.frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .refreshable {
+                .refreshableX {
                     await viewModel.onRefresh()
                 }
             }

@@ -36,7 +36,7 @@ class BaseViewModel<T>: ObservableObject {
      */
     @Published var canLoadNext: Bool = false
     var isLoadingNext: Bool { return state == .loading && canLoadNext }
-    var isErrorNext: Bool { return errorMessage != nil && page > 1 }
+    var isErrorNext: Bool { return errorMessage != nil && canLoadNext }
     
     /*
      Dialog, Alert, etc.

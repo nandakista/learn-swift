@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PaginationList<T: Identifiable & Equatable, Content: View, Loading: View, Error: View>: View {
+    let canLoadNext: Bool
     let isErrorNext: Bool
     let isLoadingNext: Bool
     let onLoadNext: () -> Void
@@ -17,6 +18,7 @@ struct PaginationList<T: Identifiable & Equatable, Content: View, Loading: View,
     let errorView: Error
     
     init(
+        canLoadNext: Bool,
         errorNextWhen: Bool,
         loadingNextWhen: Bool,
         onLoadNext: @escaping () -> Void,
@@ -36,6 +38,7 @@ struct PaginationList<T: Identifiable & Equatable, Content: View, Loading: View,
         },
         @ViewBuilder itemBuilder: @escaping (T) -> Content
     ) {
+        self.canLoadNext = canLoadNext
         self.isErrorNext = errorNextWhen
         self.isLoadingNext = loadingNextWhen
         self.onLoadNext = onLoadNext
@@ -50,7 +53,7 @@ struct PaginationList<T: Identifiable & Equatable, Content: View, Loading: View,
             ForEach(data) { datum in
                 itemBuilder(datum)
                     .onAppear {
-                        if (datum == data.last) {
+                        if (datum == data.last && canLoadNext) {
                             onLoadNext()
                         }
                     }
@@ -76,6 +79,7 @@ struct PaginationList_Previews: PreviewProvider {
     static var previews: some View {
         
         PaginationList(
+            canLoadNext: true,
             errorNextWhen: true,
             loadingNextWhen: true,
             onLoadNext: dev.githubUserViewModel.onLoadNext,

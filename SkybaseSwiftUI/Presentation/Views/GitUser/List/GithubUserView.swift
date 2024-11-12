@@ -19,6 +19,7 @@ struct GithubUserView: View {
             errorMessage: viewModel.errorMessage,
             content: {
                 PaginationList(
+                    canLoadNext: viewModel.canLoadNext,
                     errorNextWhen: viewModel.isErrorNext,
                     loadingNextWhen: viewModel.isLoadingNext,
                     onLoadNext: viewModel.onLoadNext,
@@ -28,6 +29,7 @@ struct GithubUserView: View {
                         GitUserItemList(githubUser: githubUser)
                     }
                 }
+                .listStyle(.plain)
                 .refreshable {
                     await viewModel.onLoadGithubUser(page: 1)
                 }
@@ -38,7 +40,6 @@ struct GithubUserView: View {
                 })
             }
         )
-        .listStyle(.plain)
         .navigationTitle("Github Users")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

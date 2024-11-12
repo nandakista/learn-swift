@@ -41,6 +41,19 @@ class NetworkManager {
         if let contentType = contentType, let body = body {
             request.setBody(contentType: contentType, body: body)
         }
+        
+#if DEBUG
+        print("================================================")
+        print("Request: \(request.url?.absoluteString ?? "No URL")")
+        print("Method: \(request.httpMethod ?? "No Method")")
+        
+        if let contentType = contentType, let body = body {
+            print("Content-Type: \(contentType)")
+            print("Body: \(body)")
+        }
+        print("================================================")
+#endif
+        
         return request
     }
     
