@@ -31,7 +31,7 @@ struct GithubUserView: View {
                 }
                 .listStyle(.plain)
                 .refreshable {
-                    await viewModel.onLoadGithubUser(page: 1)
+                    await viewModel.onRefresh()
                 }
                 .navigationDestination(for: GithubUser.self, destination: { githubUser in
                     GithubUserDetailView(

@@ -16,18 +16,17 @@ class GithubUserDetailViewModel: BaseViewModel<GithubUser> {
         self.dataSource = dataSource;
         self.username = username
         super.init()
-        Task { await onRefresh() }
+        Task { await onLoadGithubUserDetail() }
     }
     
     func onRefresh() async {
-        await onLoadGithubUserDetail()
+        await onLoadGithubUserDetail(keepAlive: true)
     }
     
     @MainActor
-    func onLoadGithubUserDetail() async {
-        self.loadingState()
+    func onLoadGithubUserDetail(keepAlive: Bool = false) async {
+        self.loadingState(keepAlive: keepAlive)
         do {
-            try await Task.sleep(for: .seconds(1))
             let user = try await self.dataSource.getUsersDetail(username: username).async()
             self.loadFinish(data: user)
         } catch {

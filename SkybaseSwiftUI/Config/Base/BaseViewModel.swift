@@ -7,8 +7,6 @@
 
 import Combine
 
-
-
 class BaseViewModel<T>: ObservableObject {
     /// Only use when you call the data in the Combine subscription
     /// otherwise when you use async await task you don't need call .store(in: &cancellables)
@@ -27,16 +25,16 @@ class BaseViewModel<T>: ObservableObject {
      */
     var isInitial: Bool { return state == .initial }
     var isEmpty: Bool { return state == .empty }
-    var isError: Bool { return state == .error && !canLoadNext }
-    var isLoading: Bool { return state == .loading && !canLoadNext }
+    var isError: Bool { return state == .error }
+    var isLoading: Bool { return state == .loading }
     var isSuccess: Bool { return state == .success }
     
     /*
      Pagination
      */
     @Published var canLoadNext: Bool = false
-    var isLoadingNext: Bool { return state == .loading && canLoadNext }
-    var isErrorNext: Bool { return errorMessage != nil && canLoadNext }
+    var isLoadingNext: Bool { return state == .loadingNext}
+    var isErrorNext: Bool { return state == .errorNext }
     
     /*
      Dialog, Alert, etc.
@@ -58,8 +56,12 @@ class BaseViewModel<T>: ObservableObject {
         }
     }
     
-    func loadingState() {
-        state = .loading
+    func loadingState(keepAlive: Bool = false) {
+        if (page == 1 && (isInitial || isEmpty || isError)) {
+            state = .loading
+        } else {
+            state = keepAlive ? .loadingNext : .loading
+        }
         errorMessage = nil
     }
     
@@ -69,7 +71,7 @@ class BaseViewModel<T>: ObservableObject {
             dismissLoadingDialog()
         } else {
             self.errorMessage = error
-            state = .error
+            state = (page == 1) ? .error : .errorNext
         }
         
     }

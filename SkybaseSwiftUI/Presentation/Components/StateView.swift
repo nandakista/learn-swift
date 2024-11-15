@@ -30,8 +30,8 @@ struct StateView<Content: View, LoadingView: View, ErrorView: View, EmptyView: V
         @ViewBuilder content: () -> Content
     ) {
         self.isLoading = loadingWhen
-        self.isError = errorWhen
         self.isEmpty = emptyWhen
+        self.isError = errorWhen
         self.errorMessage = errorMessage
         self.loadingContent = loadingView()
         self.errorContent = errorView
@@ -42,6 +42,7 @@ struct StateView<Content: View, LoadingView: View, ErrorView: View, EmptyView: V
     var body: some View {
         if isLoading {
             loadingContent
+                .navigationBarTitleDisplayMode(.inline)
         } else if isError && errorMessage != nil {
             errorContent(errorMessage ?? "An error occurred")
         } else if isEmpty {

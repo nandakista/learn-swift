@@ -9,8 +9,10 @@ enum RequestState {
     case initial
     case empty
     case loading
+    case loadingNext
     case success
     case error
+    case errorNext
 }
 
 extension RequestState {
@@ -25,6 +27,10 @@ extension RequestState {
     var isLoading: Bool {
         return self == .loading
     }
+    
+    var isLoadingNext: Bool {
+        return self == .loadingNext
+    }
 
     var isSuccess: Bool {
         return self == .success
@@ -32,5 +38,9 @@ extension RequestState {
 
     var isError: Bool {
         return self == .error
+    }
+    
+    var isErrorNext: Bool {
+        return self == .errorNext
     }
 }

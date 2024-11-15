@@ -11,7 +11,7 @@ struct PaginationList<T: Identifiable & Equatable, Content: View, Loading: View,
     let canLoadNext: Bool
     let isErrorNext: Bool
     let isLoadingNext: Bool
-    let onLoadNext: () -> Void
+    let onLoadNext: () async -> Void
     let data: [T]
     let itemBuilder: (T) -> Content
     let loadingView: Loading
@@ -21,7 +21,7 @@ struct PaginationList<T: Identifiable & Equatable, Content: View, Loading: View,
         canLoadNext: Bool,
         errorNextWhen: Bool,
         loadingNextWhen: Bool,
-        onLoadNext: @escaping () -> Void,
+        onLoadNext: @escaping () async -> Void,
         data: [T] = [],
         @ViewBuilder loadingView: () -> Loading = { HStack {
             /// There is some bug in SwiftUI when put ProgressView inside the List. Temporary solution are use one of the following :
@@ -54,7 +54,7 @@ struct PaginationList<T: Identifiable & Equatable, Content: View, Loading: View,
                 itemBuilder(datum)
                     .onAppear {
                         if (datum == data.last && canLoadNext) {
-                            onLoadNext()
+                            Task { await onLoadNext() }
                         }
                     }
             }
@@ -67,7 +67,7 @@ struct PaginationList<T: Identifiable & Equatable, Content: View, Loading: View,
             if isErrorNext {
                 errorView
                     .onTapGesture {
-                        onLoadNext()
+                        Task { await onLoadNext() }
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
             }
