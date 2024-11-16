@@ -47,15 +47,17 @@ class BaseViewModel<T>: ObservableObject {
         }
     }
     
-    func handleCompletion(completion: Subscribers.Completion<Error>) {
-        switch completion {
-        case .failure(let error):
-            loadError(error: error.localizedDescription)
-        case .finished:
-            break
-        }
+    func onLoadNext(keepAlive: Bool? = true) async {
+        fatalError("Subclasses must implement `onLoadNext` method.")
     }
     
+    /// Manage state for showing loading view
+    ///
+    /// - Parameters:
+    ///   - keepAlive: When you set `keepAlive` to false it will show the loading view.
+    ///   And when you set `keepAlive` to true, it will keep the data and not show the loading view.
+    ///   It is perfect to set `keepAlive` to true when you call in pull refresh or load new page in pagination so the loading view is not show
+    ///   and only show the loading indicator in pull refersh or in load more
     func loadingState(keepAlive: Bool = false) {
         if (page == 1 && (isInitial || isEmpty || isError)) {
             state = .loading
@@ -98,26 +100,31 @@ class BaseViewModel<T>: ObservableObject {
         dismissLoadingDialog()
     }
     
-    ///
     /// Call this to change and show loading dialog
-    ///
     func showLoadingDialog() {
         isLoadingDialog = true
         errorMessage = nil
     }
     
-    ///
     /// Call this to change and dismiss loading dialog
-    ///
     func dismissLoadingDialog() {
         isLoadingDialog = false
     }
     
-    ///
     /// Call this to change and show error dialog
-    ///
     func loadingDialogError(error: String) {
         self.errorDialogMessage = error
         dismissLoadingDialog()
+    }
+    
+    /// Only use when you call the data in the Combine subscription
+    /// otherwise when you use async await task you don't need this handling
+    func handleCompletion(completion: Subscribers.Completion<Error>) {
+        switch completion {
+        case .failure(let error):
+            loadError(error: error.localizedDescription)
+        case .finished:
+            break
+        }
     }
 }
