@@ -51,6 +51,9 @@
 		8EE29B9A2CD2719C0047E48F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE29B992CD2719C0047E48F /* LoginView.swift */; };
 		8EE29B9E2CD280BF0047E48F /* LoadingDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE29B9D2CD280BF0047E48F /* LoadingDialog.swift */; };
 		8EE29BA02CD281650047E48F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE29B9F2CD281650047E48F /* LoginViewModel.swift */; };
+		8EF361362CE95C4E00DF57B7 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF361352CE95C4E00DF57B7 /* CustomTextField.swift */; };
+		8EF361382CE9624A00DF57B7 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF361372CE9624A00DF57B7 /* PrimaryButton.swift */; };
+		8EF3613B2CE9644A00DF57B7 /* ConditionalFrameModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF3613A2CE9644500DF57B7 /* ConditionalFrameModifier.swift */; };
 		8EF452652C8021F3003FF427 /* GithubDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF452642C8021F3003FF427 /* GithubDataSource.swift */; };
 		8EF452672C8030B1003FF427 /* ResponseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF452662C8030B1003FF427 /* ResponseList.swift */; };
 /* End PBXBuildFile section */
@@ -101,6 +104,9 @@
 		8EE29B992CD2719C0047E48F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		8EE29B9D2CD280BF0047E48F /* LoadingDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDialog.swift; sourceTree = "<group>"; };
 		8EE29B9F2CD281650047E48F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		8EF361352CE95C4E00DF57B7 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		8EF361372CE9624A00DF57B7 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		8EF3613A2CE9644500DF57B7 /* ConditionalFrameModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalFrameModifier.swift; sourceTree = "<group>"; };
 		8EF452642C8021F3003FF427 /* GithubDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubDataSource.swift; sourceTree = "<group>"; };
 		8EF452662C8030B1003FF427 /* ResponseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,6 +125,7 @@
 		8E1ECE3D2CCD162C00211F5A /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				8EA791DE2CE8D523000D5AEC /* Helpers */,
 				8E674E4F2CD4409300F26E45 /* Database */,
 				8EAA4C062C8001C8001223BC /* Extensions */,
 			);
@@ -157,11 +164,14 @@
 		8E1ECE442CCDAD8500211F5A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				8EF3613C2CE96B3900DF57B7 /* Buttons */,
+				8EF361392CE9637100DF57B7 /* ViewModifier */,
 				8E7E807C2CE0EA7000AB69D6 /* RefreshableScrollView.swift */,
 				8E06C0AE2CCFC9D700E9264F /* StateView.swift */,
 				8EE29B9D2CD280BF0047E48F /* LoadingDialog.swift */,
 				8EC1C3F82CD9805D00D3F347 /* PaginationList.swift */,
 				8EC1C3FA2CD9A6C200D3F347 /* CustomProgressView.swift */,
+				8EF361352CE95C4E00DF57B7 /* CustomTextField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -326,6 +336,13 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		8EA791DE2CE8D523000D5AEC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		8EAA4C032C7FFAAB001223BC /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,6 +423,22 @@
 				8E5429142CD1241100E3E718 /* AuthManager.swift */,
 			);
 			path = AuthManager;
+			sourceTree = "<group>";
+		};
+		8EF361392CE9637100DF57B7 /* ViewModifier */ = {
+			isa = PBXGroup;
+			children = (
+				8EF3613A2CE9644500DF57B7 /* ConditionalFrameModifier.swift */,
+			);
+			path = ViewModifier;
+			sourceTree = "<group>";
+		};
+		8EF3613C2CE96B3900DF57B7 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				8EF361372CE9624A00DF57B7 /* PrimaryButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		8EF452632C8021D2003FF427 /* DataSources */ = {
@@ -500,6 +533,7 @@
 				8EDD5CBD2C7EB5CB005BB57C /* MainNavigationView.swift in Sources */,
 				8EAA4C0A2C8009EB001223BC /* DoubleExtension.swift in Sources */,
 				8E7E7C852CD3152F0093C969 /* TabItemView.swift in Sources */,
+				8EF361362CE95C4E00DF57B7 /* CustomTextField.swift in Sources */,
 				8E674E562CD4922400F26E45 /* ViewExtension.swift in Sources */,
 				8E674E512CD440A300F26E45 /* KeychainManager.swift in Sources */,
 				8E53F46B2CD352B600DFC6AC /* NetworkExtension.swift in Sources */,
@@ -508,12 +542,14 @@
 				8E61B3DF2AE9DB6A005B882D /* SkybaseSwiftUIApp.swift in Sources */,
 				8E4FAE572CD3B972008A8E2D /* Login.swift in Sources */,
 				8E61B3F52AE9EEDC005B882D /* GitUserItemList.swift in Sources */,
+				8EF3613B2CE9644A00DF57B7 /* ConditionalFrameModifier.swift in Sources */,
 				8EF452652C8021F3003FF427 /* GithubDataSource.swift in Sources */,
 				8EF452672C8030B1003FF427 /* ResponseList.swift in Sources */,
 				8E1ECE412CCD16C100211F5A /* NetworkManager.swift in Sources */,
 				8E88938F2CCF064200ABDE77 /* IGithubDataSource.swift in Sources */,
 				8E2E4B862CE022F70074B999 /* PublisherExtension.swift in Sources */,
 				8EE29B982CD25B420047E48F /* ImageExtension.swift in Sources */,
+				8EF361382CE9624A00DF57B7 /* PrimaryButton.swift in Sources */,
 				8EBA536A2C7E908200097D62 /* GithubUser.swift in Sources */,
 				8E5429152CD1241100E3E718 /* AuthManager.swift in Sources */,
 				8E8893C72CCF23AF00ABDE77 /* NetworkError.swift in Sources */,

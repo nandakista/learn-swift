@@ -23,59 +23,28 @@ struct LoginView: View {
                 .fontWeight(.bold)
                 .padding(.bottom, 32)
             
-            VStack(
-                alignment: .leading,
-                content: {
-                    TextField("Username", text: $username)
-                        .padding()
-                        .background(Color.gray.opacity(0.15).cornerRadius(10))
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                    
-                    if isSubmitted && username.isEmpty {
-                        Text("Field can not be empty!")
-                            .foregroundColor(.red)
-                            .font(.system(size: 15))
-                            .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
-                        .padding(.horizontal, 0)}
+            CustomTextField(
+                title: "Username",
+                text: $username,
+                isError: isSubmitted && username.isEmpty
+            )
+            
+            CustomTextField(
+                title: "Password",
+                text: $password,
+                isError: isSubmitted && password.isEmpty
+            )
+            
+            PrimaryButton(
+                title: "Log In",
+                disabled: viewModel.isLoading,
+                action: {
+                    isSubmitted = true
+                    if (username.isEmpty || password.isEmpty) { return }
+                    viewModel.onLogin(username: username, password: password)
                 }
             )
-            .padding(.horizontal)
             
-            VStack(
-                alignment: .leading,
-                content: {
-                    SecureField("Password", text: $password)
-                        .padding()
-                        .background(Color.gray.opacity(0.15).cornerRadius(10))
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                    if isSubmitted && password.isEmpty {
-                        Text("Field can not be empty!")
-                            .foregroundColor(.red)
-                            .font(.system(size: 15))
-                            .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
-                            .padding(.horizontal, 0)
-                    }
-                }
-            )
-            .padding(.horizontal)
-            
-            Button(action: {
-                isSubmitted = true
-                if (username.isEmpty || password.isEmpty) { return }
-                viewModel.onLogin(username: username, password: password)
-            }) {
-                Text("Log In")
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    .padding(.horizontal)
-            }
-            .disabled(viewModel.isLoading)
             Text("or")
             Button("Bypass Login") {
                 viewModel.onBypassLogin()
